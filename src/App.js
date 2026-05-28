@@ -258,6 +258,116 @@ const CSS = `
     display:flex; justify-content:space-between; align-items:center;
     clip-path:polygon(28px 0, 100% 0, 100% 100%, 0 100%, 0 28px);
   }
+
+  /* ── Mobile Responsive ── */
+  @media (max-width: 768px) {
+    nav {
+      top:10px; padding:0 20px; height:48px; gap:16px;
+    }
+    .nav-logo { font-size:14px; }
+    .nav-links { gap:14px; }
+    .nav-btn { font-size:9px; letter-spacing:0.8px; padding-bottom:1px; }
+
+    body { font-size:16px; }
+
+    h2.sec-title-dark, h2.sec-title-light { font-size:clamp(28px,4vw,40px); }
+
+    .skill-tile { padding:16px; }
+
+    #home > div:first-child { grid-template-columns:1fr !important; }
+    #about > div > div:nth-child(2) { grid-template-columns:1fr !important; }
+    #skills .reveal { grid-template-columns:repeat(2,1fr) !important; }
+    #projects .reveal { grid-template-columns:1fr !important; }
+    #github > div > div:last-child { grid-template-columns:1fr !important; }
+
+    footer {
+      padding:18px 24px; flex-direction:column; gap:12px; text-align:center;
+      clip-path:none; border-radius:0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    body { font-size:15px; }
+
+    #home { padding:70px 20px 20px !important; }
+    #about { padding:20px 16px !important; }
+    #skills { padding:20px 16px !important; }
+    #projects { padding:20px 16px !important; }
+    #demo { padding:20px 16px !important; }
+    #github { padding:20px 16px !important; }
+
+    nav {
+      top:8px; padding:0 16px; height:46px; gap:12px;
+      border-radius:30px;
+    }
+    .nav-btn { font-size:8px; letter-spacing:0.5px; }
+
+    h1 { font-size:clamp(48px,8vw,80px) !important; }
+    h2 { font-size:clamp(24px,3.5vw,32px) !important; }
+    h3 { font-size:18px !important; }
+
+    .island-a, .island-b, .island-c { padding:40px 24px !important; }
+    .panel-a, .panel-b, .panel-c, .panel-d, .panel-e { padding:24px 20px !important; }
+
+    #home > div:first-child { grid-template-columns:1fr !important; gap:12px !important; }
+    #about > div > div:nth-child(2) { grid-template-columns:1fr !important; gap:12px !important; }
+    #skills .reveal { grid-template-columns:repeat(2,1fr) !important; gap:10px !important; }
+    #projects .reveal { grid-template-columns:1fr !important; gap:10px !important; }
+
+    .skill-tile { padding:14px; min-height:90px !important; }
+    .skill-tile:hover { min-height:auto !important; }
+
+    .proj-card { padding:20px !important; }
+
+    .btn-primary, .btn-ghost, .btn-primary-d, .btn-ghost-d {
+      padding:12px 24px; font-size:11px;
+    }
+
+    .stat-pill { padding:16px 14px; }
+
+    .contact-link { clip-path:none; padding:14px 16px !important; }
+
+    .modal-box { padding:24px; max-width:95vw; max-height:95vh; }
+
+    footer { font-size:12px; gap:10px; }
+    footer div { margin:0 !important; }
+
+    .drop-cap::first-letter { display:none; }
+
+    .dispatch-tag { gap:10px; margin-bottom:12px; }
+    .dispatch-tag::before { width:14px; }
+  }
+
+  @media (max-width: 480px) {
+    body { font-size:14px; }
+
+    #home { padding:60px 16px 16px !important; }
+
+    h1 { font-size:clamp(36px,7vw,56px) !important; }
+    h2 { font-size:clamp(20px,3vw,28px) !important; }
+
+    nav { padding:0 12px; height:44px; gap:10px; }
+    .nav-btn { font-size:7px; letter-spacing:0.5px; }
+
+    .island-a, .island-b, .island-c { padding:32px 18px !important; }
+    .panel-a, .panel-b, .panel-c, .panel-d, .panel-e { padding:18px 16px !important; }
+
+    #home > div:first-child { grid-template-columns:1fr !important; gap:10px !important; }
+    #skills .reveal { grid-template-columns:1fr !important; gap:8px !important; }
+
+    .skill-tile { padding:12px; font-size:12px !important; }
+
+    .proj-card { padding:16px !important; }
+    .proj-card h3 { font-size:18px !important; }
+
+    .btn-primary, .btn-ghost, .btn-primary-d, .btn-ghost-d {
+      padding:10px 18px; font-size:10px;
+    }
+
+    .stat-pill { padding:14px 12px; }
+
+    footer { padding:14px 16px; font-size:11px; }
+  }
 `;
 
 /* ── Static Name ── */
