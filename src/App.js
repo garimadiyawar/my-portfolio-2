@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Noto+Serif+Devanagari:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=EB+Garamond:wght@400;500&family=DM+Mono:wght@300;400;500&display=swap');
 
   :root {
     --page:    #B2C9C4;
@@ -9,9 +9,9 @@ const CSS = `
     --dark2:   #1C4A44;
     --teal:    #2ABFB0;
     --teal-b:  #5BE8D8;
-    --panel:   rgba(255,255,255,0.82);
-    --panel-b: rgba(255,255,255,0.55);
-    --pb:      rgba(255,255,255,0.35);
+    --panel:   rgba(255,255,255,0.58);
+    --panel-b: rgba(255,255,255,0.45);
+    --pb:      rgba(255,255,255,0.6);
     --p-ink:   #0E2B27;
     --p-mid:   #2A5550;
     --p-muted: #4E7E78;
@@ -21,14 +21,17 @@ const CSS = `
     --serif:   'Playfair Display', Georgia, serif;
     --body:    'EB Garamond', Georgia, serif;
     --mono:    'DM Mono', 'Courier New', monospace;
-    --deva:    'Noto Serif Devanagari', serif;
   }
 
-  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; font-style:normal !important; }
   html { scroll-behavior:smooth; }
-  body { font-family:var(--body); font-size:19px; font-weight:500; background:var(--page); color:var(--p-ink); overflow-x:hidden; }
-  em { font-style:normal; color:var(--teal); font-weight:700; }
-  p, span, div, a, button, h1, h2, h3, h4, h5, h6 { font-style:normal !important; }
+  body {
+    font-family:var(--body); font-size:19px; font-weight:500;
+    background: radial-gradient(ellipse at 18% 18%, #C8D9D5 0%, #B2C9C4 45%, #9CBAB5 100%);
+    min-height:100vh;
+    color:var(--p-ink); overflow-x:hidden;
+  }
+  em { color:var(--teal); font-weight:700; }
 
   ::-webkit-scrollbar { width:4px; }
   ::-webkit-scrollbar-track { background:rgba(21,57,53,0.1); }
@@ -43,17 +46,21 @@ const CSS = `
   .reveal   { opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease; }
   .revealed { opacity:1; transform:translateY(0); }
 
-  /* ── Nav ── */
+  /* ── Nav (floating glass bezel) ── */
   nav {
-    position:fixed; top:0; left:0; right:0; z-index:300;
-    background:rgba(21,57,53,0.95);
-    backdrop-filter:blur(16px);
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 48px; height:56px;
+    position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:300;
+    background:rgba(21,57,53,0.80);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:50px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.24), 0 2px 8px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.12);
+    display:inline-flex; align-items:center; justify-content:space-between;
+    padding:0 28px; height:50px;
+    white-space:nowrap; gap:28px;
   }
-  .nav-logo { font-family:var(--serif); font-size:18px; font-weight:700; color:var(--teal); }
-  .nav-links { display:flex; gap:30px; }
+  .nav-logo { font-family:var(--serif); font-size:17px; font-weight:700; color:var(--teal); }
+  .nav-links { display:flex; gap:26px; }
   .nav-btn {
     background:none; border:none; border-bottom:1px solid transparent;
     padding-bottom:2px; cursor:pointer;
@@ -64,31 +71,37 @@ const CSS = `
   .nav-btn.active,.nav-btn:hover { color:var(--teal); border-bottom-color:var(--teal); }
 
   /* ── Dark island wrappers ── */
-  /* Notch: top-left + bottom-right */
   .island-a {
-    background:var(--dark);
+    background:rgba(21,57,53,0.72);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
     clip-path: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px);
+    filter:drop-shadow(0 8px 40px rgba(0,0,0,0.22));
   }
-  /* Notch: top-right + bottom-left */
   .island-b {
-    background:var(--dark);
+    background:rgba(21,57,53,0.72);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
     clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px));
+    filter:drop-shadow(0 8px 40px rgba(0,0,0,0.22));
   }
-  /* Octagonal */
   .island-c {
-    background:var(--dark);
+    background:rgba(21,57,53,0.72);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
     clip-path: polygon(28px 0, calc(100% - 28px) 0, 100% 28px, 100% calc(100% - 28px), calc(100% - 28px) 100%, 28px 100%, 0 calc(100% - 28px), 0 28px);
+    filter:drop-shadow(0 8px 40px rgba(0,0,0,0.22));
   }
 
   /* ── White panel shapes ── */
-  .panel-a { background:var(--panel); backdrop-filter:blur(10px); border-radius:20px 4px 20px 20px; border:1px solid var(--pb); }
-  .panel-b { background:var(--panel); backdrop-filter:blur(10px); border-radius:4px 20px 20px 20px; border:1px solid var(--pb); }
-  .panel-c { background:var(--panel); backdrop-filter:blur(10px); border-radius:20px 20px 4px 20px; border:1px solid var(--pb); }
-  .panel-d { background:var(--panel); backdrop-filter:blur(10px); clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); }
-  .panel-e { background:var(--panel); backdrop-filter:blur(10px); border-radius:20px; border:1px solid var(--pb); }
+  .panel-a { background:rgba(255,255,255,0.52); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:20px 4px 20px 20px; border:1px solid rgba(255,255,255,0.75); box-shadow:0 4px 24px rgba(21,57,53,0.1), inset 0 1px 0 rgba(255,255,255,0.9); }
+  .panel-b { background:rgba(255,255,255,0.52); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:4px 20px 20px 20px; border:1px solid rgba(255,255,255,0.75); box-shadow:0 4px 24px rgba(21,57,53,0.1), inset 0 1px 0 rgba(255,255,255,0.9); }
+  .panel-c { background:rgba(255,255,255,0.52); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:20px 20px 4px 20px; border:1px solid rgba(255,255,255,0.75); box-shadow:0 4px 24px rgba(21,57,53,0.1), inset 0 1px 0 rgba(255,255,255,0.9); }
+  .panel-d { background:rgba(255,255,255,0.52); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); }
+  .panel-e { background:rgba(255,255,255,0.52); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:20px; border:1px solid rgba(255,255,255,0.75); box-shadow:0 4px 24px rgba(21,57,53,0.1), inset 0 1px 0 rgba(255,255,255,0.9); }
 
   /* ── Panel on page bg (lighter) ── */
-  .panel-light { background:var(--panel-b); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.5); }
+  .panel-light { background:rgba(255,255,255,0.38); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.6); }
 
   /* ── Section header ── */
   .dispatch-tag { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
@@ -107,52 +120,61 @@ const CSS = `
   h2.sec-title-dark  { font-family:var(--serif); font-size:clamp(34px,5vw,54px); color:var(--d-ink);  line-height:1.05; margin-bottom:6px; font-weight:900; }
   h2.sec-title-light { font-family:var(--serif); font-size:clamp(34px,5vw,54px); color:var(--p-ink);  line-height:1.05; margin-bottom:6px; font-weight:900; }
 
-  /* ── Drop cap (about section, light bg) ── */
+  /* ── Drop cap ── */
   .drop-cap::first-letter {
     font-family:var(--serif); font-size:4em; font-weight:900; color:var(--dark);
     float:left; line-height:0.8; margin-right:7px; margin-top:8px;
   }
 
-  /* ── Skill tile (on dark island) ── */
+  /* ── Skill tile ── */
   .skill-tile {
-    background:var(--panel); border:1px solid var(--pb);
+    background:rgba(255,255,255,0.48);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.68);
+    box-shadow:0 2px 12px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
     padding:22px; cursor:pointer;
     transition:background 0.22s, box-shadow 0.22s, min-height 0.28s;
   }
-  .skill-tile:hover { background:rgba(255,255,255,0.95); box-shadow:0 4px 24px rgba(0,0,0,0.2); }
+  .skill-tile:hover { background:rgba(255,255,255,0.72); box-shadow:0 6px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.95); }
 
-  /* ── Project card (on page bg) ── */
+  /* ── Project card ── */
   .proj-card {
-    background:var(--panel-b); border:1px solid rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.42);
+    border:1px solid rgba(255,255,255,0.68);
     padding:32px; cursor:pointer; position:relative; overflow:hidden;
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    box-shadow:0 4px 20px rgba(21,57,53,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
     transition:background 0.22s, box-shadow 0.22s, transform 0.22s, border-color 0.22s;
   }
-  .proj-card:hover { background:var(--panel); transform:translateY(-3px); box-shadow:0 8px 32px rgba(21,57,53,0.2); border-color:rgba(255,255,255,0.75); }
+  .proj-card:hover { background:rgba(255,255,255,0.62); transform:translateY(-3px); box-shadow:0 8px 32px rgba(21,57,53,0.15), inset 0 1px 0 rgba(255,255,255,0.9); border-color:rgba(255,255,255,0.85); }
   .proj-card::after { content:'↗'; position:absolute; bottom:18px; right:18px; font-family:var(--mono); font-size:12px; color:var(--dark); opacity:0; transition:opacity 0.18s, transform 0.18s; transform:translateY(4px); }
   .proj-card:hover::after { opacity:0.7; transform:translateY(0); }
 
   /* ── Buttons ── */
   .btn-primary {
-    background:var(--dark); color:var(--teal); border:none;
+    background:rgba(21,57,53,0.88); color:var(--teal); border:none;
     padding:14px 30px; cursor:pointer;
     font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+    backdrop-filter:blur(8px);
     transition:background 0.18s;
   }
   .btn-primary:hover { background:var(--dark2); }
 
   .btn-ghost {
-    background:var(--panel-b); color:var(--p-ink); border:1px solid rgba(255,255,255,0.6);
+    background:rgba(255,255,255,0.42); color:var(--p-ink); border:1px solid rgba(255,255,255,0.72);
     padding:14px 30px; cursor:pointer;
     font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     border-radius:4px 16px 4px 16px;
-    backdrop-filter:blur(8px);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.85);
     transition:background 0.18s, border-color 0.18s;
   }
-  .btn-ghost:hover { background:var(--panel); border-color:rgba(255,255,255,0.8); }
+  .btn-ghost:hover { background:rgba(255,255,255,0.65); border-color:rgba(255,255,255,0.9); }
 
-  /* versions on dark island */
   .btn-primary-d {
     background:var(--teal); color:var(--dark); border:none;
     padding:14px 30px; cursor:pointer;
@@ -166,6 +188,7 @@ const CSS = `
     padding:14px 30px; cursor:pointer;
     font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     border-radius:4px 16px 4px 16px;
+    backdrop-filter:blur(8px);
     transition:background 0.18s, border-color 0.18s;
   }
   .btn-ghost-d:hover { background:rgba(255,255,255,0.18); border-color:rgba(255,255,255,0.4); }
@@ -173,78 +196,77 @@ const CSS = `
   /* ── Matrix cell ── */
   .matrix-cell {
     text-align:center; padding:20px 12px; cursor:pointer;
-    background:var(--panel); border:1px solid var(--pb);
+    background:rgba(255,255,255,0.48);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.72);
+    box-shadow:0 2px 12px rgba(21,57,53,0.06), inset 0 1px 0 rgba(255,255,255,0.85);
     transition:background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s;
     border-radius:4px 16px 4px 16px;
   }
   .matrix-cell:hover { transform:scale(1.05); box-shadow:0 4px 20px rgba(0,0,0,0.15); }
 
-  /* ── Contact link on dark island ── */
+  /* ── Contact link ── */
   .contact-link {
     display:flex; justify-content:space-between; align-items:center;
-    background:var(--panel); border:1px solid var(--pb);
+    background:rgba(255,255,255,0.48);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.68);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.85);
     padding:14px 20px; text-decoration:none;
     clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
     transition:background 0.18s, box-shadow 0.18s;
   }
-  .contact-link:hover { background:rgba(255,255,255,0.95); box-shadow:4px 4px 0 rgba(42,191,176,0.3); }
+  .contact-link:hover { background:rgba(255,255,255,0.72); box-shadow:4px 4px 0 rgba(42,191,176,0.3), inset 0 1px 0 rgba(255,255,255,0.9); }
 
   /* ── Stat pill ── */
   .stat-pill {
-    background:var(--panel); border:1px solid var(--pb);
+    background:rgba(255,255,255,0.48);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.72);
     padding:18px 20px; text-align:center;
     border-radius:16px 4px 16px 4px;
+    box-shadow:0 2px 16px rgba(21,57,53,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
     transition:background 0.18s, box-shadow 0.18s;
   }
-  .stat-pill:hover { background:rgba(255,255,255,0.95); box-shadow:0 4px 20px rgba(0,0,0,0.12); }
+  .stat-pill:hover { background:rgba(255,255,255,0.7); box-shadow:0 4px 20px rgba(0,0,0,0.12); }
 
   /* ── Modal ── */
   .modal-bg {
-    position:fixed; inset:0; background:rgba(14,43,39,0.75); backdrop-filter:blur(14px);
+    position:fixed; inset:0; background:rgba(14,43,39,0.60);
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
     z-index:600; display:flex; align-items:center; justify-content:center;
     padding:20px; animation:fadeIn 0.15s ease;
   }
   .modal-box {
-    background:rgba(255,255,255,0.92); border-radius:20px 4px 20px 20px;
+    background:rgba(255,255,255,0.72);
+    backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px);
+    border-radius:20px 4px 20px 20px;
     padding:36px; max-width:580px; width:100%;
-    border:1px solid rgba(255,255,255,0.7);
-    box-shadow:0 20px 60px rgba(14,43,39,0.3);
+    border:1px solid rgba(255,255,255,0.78);
+    box-shadow:0 20px 60px rgba(14,43,39,0.22), inset 0 1px 0 rgba(255,255,255,0.95);
     animation:fadeUp 0.22s ease; max-height:90vh; overflow-y:auto;
   }
 
   footer {
-    background:var(--dark); padding:22px 48px;
+    background:rgba(21,57,53,0.80);
+    backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding:22px 48px;
     display:flex; justify-content:space-between; align-items:center;
     clip-path:polygon(28px 0, 100% 0, 100% 100%, 0 100%, 0 28px);
   }
 `;
 
-/* ── Glitch Name ── */
+/* ── Static Name ── */
 function GlitchName() {
-  const GLITCH = '!@#%░▒▓<>?/|{}~*&';
-  const [display, setDisplay] = useState({ mode:'en', g:['',''] });
-  const timer = useRef(null);
-  const rg = () => [
-    Array.from({length:6}, ()=>GLITCH[Math.floor(Math.random()*GLITCH.length)]).join(''),
-    Array.from({length:7}, ()=>GLITCH[Math.floor(Math.random()*GLITCH.length)]).join(''),
-  ];
-  const glitchTo = (target) => {
-    if (timer.current) clearInterval(timer.current);
-    let tick = 0;
-    timer.current = setInterval(() => {
-      tick++;
-      if (tick <= 8) setDisplay(tick%2===1?{mode:'glitch',g:rg()}:{mode:target,g:['','']});
-      else { setDisplay({mode:target,g:['','']}); clearInterval(timer.current); timer.current=null; }
-    }, 50);
-  };
-  useEffect(()=>()=>{ if(timer.current) clearInterval(timer.current); },[]);
-  const { mode, g } = display;
   const line = { display:'block', lineHeight:0.92 };
   return (
-    <div onMouseEnter={()=>glitchTo('hi')} onMouseLeave={()=>glitchTo('en')} style={{ cursor:'default', userSelect:'none' }}>
-      {mode==='en'&&<><span style={{...line,color:'var(--d-ink)'}}>GARIMA</span><span style={{...line,color:'var(--teal)'}}>DIYAWAR</span></>}
-      {mode==='hi'&&<><span style={{...line,fontFamily:'var(--deva)',color:'var(--d-ink)',fontSize:'0.68em',lineHeight:1.15}}>गरिमा</span><span style={{...line,fontFamily:'var(--deva)',color:'var(--teal)',fontSize:'0.68em',lineHeight:1.15}}>दियावार</span></>}
-      {mode==='glitch'&&<><span style={{...line,fontFamily:'var(--mono)',color:'var(--teal)',fontSize:'0.42em',letterSpacing:'5px'}}>{g[0]}</span><span style={{...line,fontFamily:'var(--mono)',color:'var(--teal)',fontSize:'0.42em',letterSpacing:'5px'}}>{g[1]}</span></>}
+    <div style={{ userSelect:'none' }}>
+      <span style={{...line,color:'var(--d-ink)'}}>GARIMA</span>
+      <span style={{...line,color:'var(--teal)'}}>DIYAWAR</span>
     </div>
   );
 }
@@ -360,7 +382,7 @@ const PROJECTS = [
     tech:['LangGraph','ChromaDB','BM25 + RRF','BAAI/bge','Ollama (Llama3)','Streamlit','JWT/RBAC'],
     github:'https://github.com/garimadiyawar/enterprise_brain' },
   { id:2,num:'02',title:'Pharma AE Monitor',subtitle:'3-Agent Drug Safety Signal Detection',badge:'LIVE',cat:'Healthcare AI × Agents',live_badge:true,
-    desc:'Type a drug name. Three agents later, you have a pharmacovigilance-grade report: organ clusters, RED/YELLOW/GREEN safety flags, structured narrative. The analysis IQVIA charges a lot for, rebuilt on a weekend.',
+    desc:'Type a drug name. Three agents later, you have a pharmacovigilance-grade report: organ clusters, RED/YELLOW/GREEN safety flags, structured narrative.',
     longDesc:'A 3-agent LangGraph pipeline doing real pharmacovigilance work. Agent 1 hits the OpenFDA FAERS API. Agent 2 clusters adverse reactions by organ system. Agent 3 writes a structured narrative report with tiered safety signal ratings. Powered by Claude 3.5 Haiku, fully traced in LangSmith.',
     tech:['LangGraph','Claude 3.5 Haiku','OpenFDA FAERS','LangSmith','Streamlit','Python 3.11'],
     github:'https://github.com/garimadiyawar/Pharma-ae-monitor' },
@@ -469,7 +491,7 @@ function ConfusionMatrix() {
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,maxWidth:280}}>
           {CM_CELLS.map(cell=>(
             <div key={cell.k} className="matrix-cell" onMouseEnter={()=>setHov(cell.k)} onMouseLeave={()=>setHov(null)}
-              style={{background:hov===cell.k?cell.bg:'var(--panel)',borderColor:hov===cell.k?cell.bdr:'var(--pb)',boxShadow:hov===cell.k?`3px 3px 0 ${cell.bdr}44`:'none'}}>
+              style={{background:hov===cell.k?cell.bg:'rgba(255,255,255,0.48)',borderColor:hov===cell.k?cell.bdr:'rgba(255,255,255,0.72)',boxShadow:hov===cell.k?`3px 3px 0 ${cell.bdr}44`:'none'}}>
               <div style={{fontSize:36,fontWeight:900,fontFamily:'var(--serif)',color:hov===cell.k?cell.bdr:'var(--p-ink)'}}>{cell.val}</div>
               <div style={{fontSize:12,fontWeight:600,color:'var(--p-muted)',fontFamily:'var(--mono)',marginTop:4}}>{cell.label}</div>
             </div>
@@ -520,6 +542,12 @@ function GitHubActivity() {
   );
 }
 
+const CERTS = [
+  { name:'Google IT Automation with Python',  url:'https://coursera.org/verify/professional-cert/PU03T5GY29SU' },
+  { name:'Google Advanced Data Analytics',    url:'https://coursera.org/verify/professional-cert/CIJGIBJ3F6Q0' },
+  { name:'Google Data Analytics',             url:'https://coursera.org/verify/professional-cert/CIJGIBJ3F6Q0' },
+];
+
 export default function Portfolio() {
   const [activeProj,setActiveProj] = useState(null);
   const [activeSec,setActiveSec] = useState('home');
@@ -546,15 +574,15 @@ export default function Portfolio() {
   return (
     <div style={{background:'var(--page)',minHeight:'100vh'}}>
       <nav>
-        <div className="nav-logo">Garima Diyawar</div>
+        {/*<div className="nav-logo">Garima Diyawar</div>*/}
         <div className="nav-links">{NAV.map(([id,lb])=><button key={id} className={`nav-btn${activeSec===id?' active':''}`} onClick={()=>go(id)}>{lb}</button>)}</div>
       </nav>
 
-      {/* ══ HERO — two columns: home island + contact island ══ */}
+      {/* ══ HERO ══ */}
       <div id="home" style={{padding:'80px 36px 36px'}}>
         <div style={{display:'grid',gridTemplateColumns:'1.45fr 1fr',gap:18,alignItems:'stretch'}}>
 
-          {/* LEFT — home content (island A) */}
+          {/* LEFT */}
           <div className="island-a" style={{padding:'60px 56px',display:'flex',flexDirection:'column',justifyContent:'center',minHeight:'82vh'}}>
             <div style={{display:'flex',alignItems:'center',gap:0,marginBottom:36,animation:'fadeUp 0.4s ease 0.05s both'}}>
               <div style={{flex:1,height:'1px',background:'rgba(255,255,255,0.12)'}}/>
@@ -571,7 +599,7 @@ export default function Portfolio() {
             <div style={{width:64,height:3,background:'var(--teal)',margin:'24px auto',animation:'fadeUp 0.4s ease 0.28s both'}}/>
 
             <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:4,marginBottom:24,textAlign:'center',animation:'fadeUp 0.4s ease 0.32s both'}}>
-              B.TECH CSE  ·  AI/ML ENGINEER  ·  2025
+              B.TECH CSE  ·  AI/ML ENGINEER  ·  2026
             </div>
 
             <p style={{fontFamily:'var(--body)',fontSize:'clamp(17px,1.7vw,21px)',fontWeight:500,color:'var(--d-mid)',lineHeight:1.65,maxWidth:540,margin:'0 auto 40px',textAlign:'center',animation:'fadeUp 0.55s ease 0.38s both'}}>
@@ -583,7 +611,6 @@ export default function Portfolio() {
               <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer"><button className="btn-ghost-d">GitHub ↗</button></a>
             </div>
 
-            {/* Stat strip at bottom */}
             <div style={{marginTop:48,paddingTop:24,borderTop:'1px solid rgba(255,255,255,0.1)',display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,animation:'fadeUp 0.5s ease 0.55s both'}}>
               {[
                 {n:'8',l:'Systems shipped'},
@@ -598,7 +625,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* RIGHT — contact content (island B) */}
+          {/* RIGHT */}
           <div className="island-b" style={{padding:'56px 44px',display:'flex',flexDirection:'column',justifyContent:'center'}}>
             <div className="reveal revealed" style={{textAlign:'center',animation:'fadeUp 0.5s ease 0.2s both'}}>
               <div className="dispatch-tag dt-dark" style={{justifyContent:'center'}}><span>Correspondence</span></div>
@@ -622,9 +649,9 @@ export default function Portfolio() {
             </div>
 
             <div style={{marginTop:28,textAlign:'center',animation:'fadeUp 0.5s ease 0.45s both'}}>
-              <div style={{display:'inline-flex',alignItems:'center',gap:10,background:'rgba(255,255,255,0.08)',border:'1px solid rgba(255,255,255,0.18)',borderRadius:'4px 16px 4px 16px',padding:'11px 20px'}}>
+              <div style={{display:'inline-flex',alignItems:'center',gap:10,background:'rgba(255,255,255,0.1)',border:'1px solid rgba(255,255,255,0.2)',backdropFilter:'blur(12px)',borderRadius:'4px 16px 4px 16px',padding:'11px 20px'}}>
                 <div style={{width:7,height:7,borderRadius:'50%',background:'#4CAF50',boxShadow:'0 0 8px #4CAF50',animation:'pulse 2.5s ease-in-out infinite'}}/>
-                <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:0.8}}>Available for AI/ML roles · 2025</span>
+                <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:0.8}}>Available for AI/ML roles · 2026</span>
               </div>
             </div>
           </div>
@@ -632,11 +659,11 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ══ ABOUT — light bg ══ */}
+      {/* ══ ABOUT ══ */}
       <div id="about" style={{padding:'36px 36px'}}>
         <div style={{maxWidth:980,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:20}}>
-            <div className="dispatch-tag dt-light"><span>About the Engineer</span></div>
+            <div className="dispatch-tag dt-light"><span>About Me</span></div>
             <h2 className="sec-title-light">The mind behind<br/><em>the models</em></h2>
           </div>
           <div className="reveal" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:18,alignItems:'start'}}>
@@ -646,22 +673,42 @@ export default function Portfolio() {
                 "Beyond the thesis, the work has ranged widely: multi-agent retrieval systems, NLP classifiers for implicit bias in online text, a pharmacovigilance pipeline built on real FDA data, audio-to-arrangement ML, and most recently, a deployed dashboard examining Gen Z's economic position across cost of living, employment, education debt, and housing. The common thread is building things that run, not just things that look good in a notebook.",
                 "Explainability is a recurring theme rather than an afterthought. There is a difference between a model that performs well and one whose decisions can be examined, questioned, and trusted.",
               ].map((para,i)=>(
-                <p key={i} className={i===0?'drop-cap':''} style={{fontFamily:'var(--body)',fontSize:i===0?19:17,fontWeight:i===0?500:500,color:i===0?'var(--p-ink)':'var(--p-mid)',lineHeight:1.75,marginBottom:i<2?20:0}}>{para}</p>
+                <p key={i} className={i===0?'drop-cap':''} style={{fontFamily:'var(--body)',fontSize:i===0?19:17,fontWeight:500,color:i===0?'var(--p-ink)':'var(--p-mid)',lineHeight:1.75,marginBottom:i<2?20:0}}>{para}</p>
               ))}
             </div>
-            <div className="panel-b" style={{padding:'34px 36px'}}>
-              {[
-                {l:'Education',  v:'B.Tech, Computer Science & Engineering'},
-                {l:'Focus',      v:'Agentic AI · Explainable ML · NLP · Audio ML'},
-                {l:'Stack',      v:'Python · LangGraph · PyTorch · SHAP · Azure AI · Streamlit'},
-                {l:'Shipped',    v:'8 end-to-end systems, all public on GitHub'},
-                {l:'Open to',    v:'AI/ML roles, research collabs, interesting problems'},
-              ].map(({l,v},i,arr)=>(
-                <div key={l} style={{borderBottom:i<arr.length-1?'1px solid rgba(21,57,53,0.12)':'none',paddingBottom:14,marginBottom:14,display:'flex',gap:18,alignItems:'flex-start'}}>
-                  <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:600,color:'var(--teal)',letterSpacing:1,minWidth:82,paddingTop:3,flexShrink:0,textTransform:'uppercase'}}>{l}</span>
-                  <span style={{fontFamily:'var(--body)',fontSize:16,fontWeight:500,color:'var(--p-ink)',lineHeight:1.5}}>{v}</span>
+            <div style={{display:'flex',flexDirection:'column',gap:18}}>
+              <div className="panel-b" style={{padding:'34px 36px'}}>
+                {[
+                  {l:'Education',  v:'B.Tech, Computer Science & Engineering'},
+                  {l:'Focus',      v:'Agentic AI · Explainable ML · NLP · Audio ML'},
+                  {l:'Stack',      v:'Python · LangGraph · PyTorch · SHAP · Azure AI · Streamlit'},
+                  {l:'Shipped',    v:'8 end-to-end systems, all public on GitHub'},
+                  {l:'Open to',    v:'AI/ML roles, research collabs, interesting problems'},
+                ].map(({l,v},i,arr)=>(
+                  <div key={l} style={{borderBottom:i<arr.length-1?'1px solid rgba(21,57,53,0.12)':'none',paddingBottom:14,marginBottom:14,display:'flex',gap:18,alignItems:'flex-start'}}>
+                    <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:600,color:'var(--teal)',letterSpacing:1,minWidth:82,paddingTop:3,flexShrink:0,textTransform:'uppercase'}}>{l}</span>
+                    <span style={{fontFamily:'var(--body)',fontSize:16,fontWeight:500,color:'var(--p-ink)',lineHeight:1.5}}>{v}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Certifications island */}
+              <div className="panel-e" style={{padding:'28px 32px'}}>
+                <div className="dispatch-tag dt-light" style={{marginBottom:16}}><span>Certifications</span></div>
+                <div style={{display:'flex',flexDirection:'column',gap:10}}>
+                  {CERTS.map(({name,url})=>(
+                    <a key={name} href={url} target="_blank" rel="noreferrer" style={{textDecoration:'none',display:'flex',justifyContent:'space-between',alignItems:'center',padding:'12px 16px',background:'rgba(255,255,255,0.45)',backdropFilter:'blur(10px)',WebkitBackdropFilter:'blur(10px)',border:'1px solid rgba(255,255,255,0.7)',borderRadius:'8px 20px 8px 8px',boxShadow:'inset 0 1px 0 rgba(255,255,255,0.9)',transition:'background 0.18s, box-shadow 0.18s'}}
+                      onMouseEnter={e=>{e.currentTarget.style.background='rgba(255,255,255,0.68)';e.currentTarget.style.boxShadow='0 2px 12px rgba(21,57,53,0.1), inset 0 1px 0 rgba(255,255,255,0.95)';}}
+                      onMouseLeave={e=>{e.currentTarget.style.background='rgba(255,255,255,0.45)';e.currentTarget.style.boxShadow='inset 0 1px 0 rgba(255,255,255,0.9)';}}>
+                      <div>
+                        <div style={{fontFamily:'var(--body)',fontSize:15,fontWeight:600,color:'var(--p-ink)',lineHeight:1.35}}>{name}</div>
+                        <div style={{fontFamily:'var(--mono)',fontSize:10,color:'var(--teal)',letterSpacing:0.8,marginTop:3,textTransform:'uppercase'}}>Google · Coursera Professional</div>
+                      </div>
+                      <span style={{fontFamily:'var(--mono)',fontSize:18,color:'var(--teal)',marginLeft:14,flexShrink:0,fontWeight:700}}>↗</span>
+                    </a>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
           <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginTop:18}}>
@@ -675,7 +722,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ══ SKILLS — dark island B ══ */}
+      {/* ══ SKILLS ══ */}
       <div id="skills" style={{padding:'36px'}}>
         <div className="island-b" style={{padding:'60px 48px'}}>
           <div style={{maxWidth:1060,margin:'0 auto'}}>
@@ -691,7 +738,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ══ PROJECTS — light bg ══ */}
+      {/* ══ PROJECTS ══ */}
       <div id="projects" style={{padding:'36px'}}>
         <div style={{maxWidth:1060,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:36}}>
@@ -705,7 +752,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ══ ML LAB — dark island A ══ */}
+      {/* ══ ML LAB ══ */}
       <div id="demo" style={{padding:'36px'}}>
         <div className="island-a" style={{padding:'60px 48px'}}>
           <div style={{maxWidth:920,margin:'0 auto'}}>
@@ -735,7 +782,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ══ GITHUB — light bg ══ */}
+      {/* ══ GITHUB ══ */}
       <div id="github" style={{padding:'36px'}}>
         <div style={{maxWidth:860,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:24}}>
@@ -765,8 +812,8 @@ export default function Portfolio() {
       {/* FOOTER */}
       <footer>
         <div style={{fontFamily:'var(--serif)',fontSize:18,color:'var(--teal)',fontWeight:700}}>Garima Diyawar</div>
-        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:1}}>data · models · curiosity · 2025</div>
-        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:1}}>© 2025</div>
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:1}}>data · models · curiosity · 2026</div>
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:1}}>© 2026</div>
       </footer>
 
       {activeProj&&<ProjectModal proj={activeProj} onClose={()=>setActiveProj(null)}/>}
