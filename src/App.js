@@ -26,7 +26,9 @@ const CSS = `
 
   *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
   html { scroll-behavior:smooth; }
-  body { font-family:var(--body); font-size:17px; background:var(--page); color:var(--p-ink); overflow-x:hidden; }
+  body { font-family:var(--body); font-size:19px; font-weight:500; background:var(--page); color:var(--p-ink); overflow-x:hidden; }
+  em { font-style:normal; color:var(--teal); font-weight:700; }
+  p, span, div, a, button, h1, h2, h3, h4, h5, h6 { font-style:normal !important; }
 
   ::-webkit-scrollbar { width:4px; }
   ::-webkit-scrollbar-track { background:rgba(21,57,53,0.1); }
@@ -50,12 +52,12 @@ const CSS = `
     display:flex; align-items:center; justify-content:space-between;
     padding:0 48px; height:56px;
   }
-  .nav-logo { font-family:var(--serif); font-size:15px; font-weight:700; font-style:italic; color:var(--teal); }
-  .nav-links { display:flex; gap:28px; }
+  .nav-logo { font-family:var(--serif); font-size:18px; font-weight:700; color:var(--teal); }
+  .nav-links { display:flex; gap:30px; }
   .nav-btn {
     background:none; border:none; border-bottom:1px solid transparent;
     padding-bottom:2px; cursor:pointer;
-    font-family:var(--mono); font-size:9px; color:var(--d-muted);
+    font-family:var(--mono); font-size:11px; font-weight:500; color:var(--d-muted);
     letter-spacing:1.5px; text-transform:uppercase;
     transition:color 0.15s, border-color 0.15s;
   }
@@ -92,7 +94,7 @@ const CSS = `
   .dispatch-tag { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
   .dispatch-tag::before { content:''; width:20px; height:1px; flex-shrink:0; }
   .dispatch-tag::after  { content:''; flex:1; height:1px; }
-  .dispatch-tag span { font-family:var(--mono); font-size:8.5px; letter-spacing:4px; text-transform:uppercase; white-space:nowrap; }
+  .dispatch-tag span { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:4px; text-transform:uppercase; white-space:nowrap; }
 
   .dt-dark::before { background:var(--teal); }
   .dt-dark::after  { background:rgba(255,255,255,0.12); }
@@ -102,8 +104,8 @@ const CSS = `
   .dt-light::after  { background:rgba(21,57,53,0.2); }
   .dt-light span    { color:var(--p-muted); }
 
-  h2.sec-title-dark  { font-family:var(--serif); font-size:clamp(26px,4vw,42px); color:var(--d-ink);  line-height:1.1; margin-bottom:6px; font-weight:700; }
-  h2.sec-title-light { font-family:var(--serif); font-size:clamp(26px,4vw,42px); color:var(--p-ink);  line-height:1.1; margin-bottom:6px; font-weight:700; }
+  h2.sec-title-dark  { font-family:var(--serif); font-size:clamp(34px,5vw,54px); color:var(--d-ink);  line-height:1.05; margin-bottom:6px; font-weight:900; }
+  h2.sec-title-light { font-family:var(--serif); font-size:clamp(34px,5vw,54px); color:var(--p-ink);  line-height:1.05; margin-bottom:6px; font-weight:900; }
 
   /* ── Drop cap (about section, light bg) ── */
   .drop-cap::first-letter {
@@ -114,7 +116,7 @@ const CSS = `
   /* ── Skill tile (on dark island) ── */
   .skill-tile {
     background:var(--panel); border:1px solid var(--pb);
-    padding:18px; cursor:pointer;
+    padding:22px; cursor:pointer;
     transition:background 0.22s, box-shadow 0.22s, min-height 0.28s;
   }
   .skill-tile:hover { background:rgba(255,255,255,0.95); box-shadow:0 4px 24px rgba(0,0,0,0.2); }
@@ -122,7 +124,7 @@ const CSS = `
   /* ── Project card (on page bg) ── */
   .proj-card {
     background:var(--panel-b); border:1px solid rgba(255,255,255,0.55);
-    padding:26px; cursor:pointer; position:relative; overflow:hidden;
+    padding:32px; cursor:pointer; position:relative; overflow:hidden;
     backdrop-filter:blur(12px);
     transition:background 0.22s, box-shadow 0.22s, transform 0.22s, border-color 0.22s;
   }
@@ -133,8 +135,8 @@ const CSS = `
   /* ── Buttons ── */
   .btn-primary {
     background:var(--dark); color:var(--teal); border:none;
-    padding:11px 26px; cursor:pointer;
-    font-family:var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase;
+    padding:14px 30px; cursor:pointer;
+    font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
     transition:background 0.18s;
   }
@@ -142,8 +144,8 @@ const CSS = `
 
   .btn-ghost {
     background:var(--panel-b); color:var(--p-ink); border:1px solid rgba(255,255,255,0.6);
-    padding:11px 26px; cursor:pointer;
-    font-family:var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase;
+    padding:14px 30px; cursor:pointer;
+    font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     border-radius:4px 16px 4px 16px;
     backdrop-filter:blur(8px);
     transition:background 0.18s, border-color 0.18s;
@@ -153,16 +155,16 @@ const CSS = `
   /* versions on dark island */
   .btn-primary-d {
     background:var(--teal); color:var(--dark); border:none;
-    padding:11px 26px; cursor:pointer;
-    font-family:var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; font-weight:500;
+    padding:14px 30px; cursor:pointer;
+    font-family:var(--mono); font-size:12px; letter-spacing:1px; text-transform:uppercase; font-weight:600;
     clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
     transition:background 0.18s;
   }
   .btn-primary-d:hover { background:var(--teal-b); }
   .btn-ghost-d {
     background:rgba(255,255,255,0.1); color:var(--d-ink); border:1px solid rgba(255,255,255,0.2);
-    padding:11px 26px; cursor:pointer;
-    font-family:var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase;
+    padding:14px 30px; cursor:pointer;
+    font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     border-radius:4px 16px 4px 16px;
     transition:background 0.18s, border-color 0.18s;
   }
@@ -326,13 +328,13 @@ function SkillTile({ sk, idx }) {
   const [hov,setHov] = useState(false);
   return (
     <div className="skill-tile" onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{ borderRadius:SKILL_SHAPES[idx%8], minHeight:hov?162:86 }}>
-      <div style={{fontSize:15,marginBottom:6,opacity:0.4}}>{sk.icon}</div>
-      <div style={{fontFamily:'var(--mono)',fontSize:10,fontWeight:500,color:sk.accent,textTransform:'uppercase',letterSpacing:0.5}}>{sk.name}</div>
+      style={{ borderRadius:SKILL_SHAPES[idx%8], minHeight:hov?178:96 }}>
+      <div style={{fontSize:18,marginBottom:8,opacity:0.5}}>{sk.icon}</div>
+      <div style={{fontFamily:'var(--mono)',fontSize:13,fontWeight:600,color:sk.accent,textTransform:'uppercase',letterSpacing:0.5}}>{sk.name}</div>
       {hov&&<div style={{animation:'fadeUp 0.16s ease'}}>
         <SkillViz type={sk.viz} accent={sk.accent}/>
-        <div style={{display:'flex',flexWrap:'wrap',gap:3}}>
-          {sk.tools.map(t=><span key={t} style={{fontSize:8,border:'1px solid rgba(0,0,0,0.15)',color:'var(--p-muted)',padding:'1px 5px',borderRadius:3,fontFamily:'var(--mono)'}}>{t}</span>)}
+        <div style={{display:'flex',flexWrap:'wrap',gap:4}}>
+          {sk.tools.map(t=><span key={t} style={{fontSize:10,fontWeight:500,border:'1px solid rgba(0,0,0,0.15)',color:'var(--p-muted)',padding:'2px 6px',borderRadius:3,fontFamily:'var(--mono)'}}>{t}</span>)}
         </div>
       </div>}
     </div>
@@ -399,22 +401,22 @@ const PROJECTS = [
 function ProjectCard({ proj, idx, onClick }) {
   return (
     <div className="proj-card" onClick={onClick} style={{ clipPath:PROJ_SHAPES[idx%8] }}>
-      <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:13}}>
-        <span style={{fontFamily:'var(--mono)',fontSize:8.5,color:'var(--p-muted)',letterSpacing:0.5}}>{proj.cat}</span>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14}}>
+        <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)',letterSpacing:0.8}}>{proj.cat}</span>
         <span style={{
-          fontFamily:'var(--mono)',fontSize:7.5,letterSpacing:1.5,padding:'2px 7px',borderRadius:12,
+          fontFamily:'var(--mono)',fontSize:10,fontWeight:600,letterSpacing:1.5,padding:'3px 9px',borderRadius:12,
           background:proj.live_badge?'var(--dark)':'rgba(21,57,53,0.12)',
           color:proj.live_badge?'var(--teal)':'var(--dark)',
           border:proj.live_badge?'none':'1px solid rgba(21,57,53,0.2)',
         }}>{proj.badge}</span>
       </div>
-      <div style={{fontFamily:'var(--mono)',fontSize:8,color:'rgba(21,57,53,0.3)',letterSpacing:2.5,marginBottom:8}}>{proj.num}</div>
-      <h3 style={{fontFamily:'var(--serif)',fontSize:19,fontWeight:700,color:'var(--p-ink)',marginBottom:3,lineHeight:1.2}}>{proj.title}</h3>
-      <div style={{fontFamily:'var(--body)',fontSize:13,color:'var(--p-muted)',marginBottom:13,fontStyle:'italic'}}>{proj.subtitle}</div>
-      <p style={{fontFamily:'var(--body)',fontSize:15,color:'var(--p-mid)',lineHeight:1.75,marginBottom:20}}>{proj.desc}</p>
-      <div style={{display:'flex',flexWrap:'wrap',gap:5}}>
-        {proj.tech.slice(0,4).map(t=><span key={t} style={{fontSize:9,background:'rgba(21,57,53,0.08)',color:'var(--p-muted)',padding:'2px 7px',borderRadius:12,fontFamily:'var(--mono)',border:'1px solid rgba(21,57,53,0.12)'}}>{t}</span>)}
-        {proj.tech.length>4&&<span style={{fontSize:9,color:'var(--p-muted)',fontFamily:'var(--mono)',padding:'2px 4px'}}>+{proj.tech.length-4}</span>}
+      <div style={{fontFamily:'var(--mono)',fontSize:11,color:'rgba(21,57,53,0.35)',letterSpacing:2.5,marginBottom:10,fontWeight:500}}>{proj.num}</div>
+      <h3 style={{fontFamily:'var(--serif)',fontSize:24,fontWeight:900,color:'var(--p-ink)',marginBottom:4,lineHeight:1.15}}>{proj.title}</h3>
+      <div style={{fontFamily:'var(--body)',fontSize:16,fontWeight:600,color:'var(--p-muted)',marginBottom:16}}>{proj.subtitle}</div>
+      <p style={{fontFamily:'var(--body)',fontSize:17,fontWeight:500,color:'var(--p-mid)',lineHeight:1.65,marginBottom:22}}>{proj.desc}</p>
+      <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
+        {proj.tech.slice(0,4).map(t=><span key={t} style={{fontSize:11,background:'rgba(21,57,53,0.08)',color:'var(--p-muted)',padding:'3px 9px',borderRadius:12,fontFamily:'var(--mono)',border:'1px solid rgba(21,57,53,0.12)',fontWeight:500}}>{t}</span>)}
+        {proj.tech.length>4&&<span style={{fontSize:11,color:'var(--p-muted)',fontFamily:'var(--mono)',padding:'3px 4px',fontWeight:500}}>+{proj.tech.length-4}</span>}
       </div>
     </div>
   );
@@ -424,16 +426,16 @@ function ProjectModal({ proj, onClose }) {
   return (
     <div className="modal-bg" onClick={onClose}>
       <div className="modal-box" onClick={e=>e.stopPropagation()}>
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:16}}>
-          <span style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--dark)',letterSpacing:2}}>{proj.cat.toUpperCase()}</span>
-          <button onClick={onClose} style={{background:'none',border:'none',fontSize:20,cursor:'pointer',color:'var(--p-muted)',lineHeight:1,padding:0}}>×</button>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:18}}>
+          <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--dark)',letterSpacing:2}}>{proj.cat.toUpperCase()}</span>
+          <button onClick={onClose} style={{background:'none',border:'none',fontSize:26,cursor:'pointer',color:'var(--p-muted)',lineHeight:1,padding:0,fontWeight:300}}>×</button>
         </div>
-        <div style={{fontFamily:'var(--mono)',fontSize:8,color:'rgba(21,57,53,0.35)',letterSpacing:2.5,marginBottom:6}}>{proj.num}</div>
-        <h2 style={{fontFamily:'var(--serif)',fontSize:22,fontWeight:700,color:'var(--p-ink)',marginBottom:3,lineHeight:1.2}}>{proj.title}</h2>
-        <div style={{fontFamily:'var(--body)',fontSize:13,color:'var(--p-muted)',marginBottom:16,fontStyle:'italic'}}>{proj.subtitle}</div>
-        <p style={{fontFamily:'var(--body)',color:'var(--p-mid)',lineHeight:1.9,fontSize:15,marginBottom:22}}>{proj.longDesc}</p>
-        <div style={{display:'flex',flexWrap:'wrap',gap:6,marginBottom:24}}>
-          {proj.tech.map(t=><span key={t} style={{background:'rgba(21,57,53,0.08)',color:'var(--p-muted)',border:'1px solid rgba(21,57,53,0.15)',padding:'3px 10px',borderRadius:12,fontSize:10,fontFamily:'var(--mono)'}}>{t}</span>)}
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'rgba(21,57,53,0.4)',letterSpacing:2.5,marginBottom:8}}>{proj.num}</div>
+        <h2 style={{fontFamily:'var(--serif)',fontSize:28,fontWeight:900,color:'var(--p-ink)',marginBottom:4,lineHeight:1.15}}>{proj.title}</h2>
+        <div style={{fontFamily:'var(--body)',fontSize:17,fontWeight:600,color:'var(--p-muted)',marginBottom:20}}>{proj.subtitle}</div>
+        <p style={{fontFamily:'var(--body)',color:'var(--p-mid)',lineHeight:1.7,fontSize:17,fontWeight:500,marginBottom:24}}>{proj.longDesc}</p>
+        <div style={{display:'flex',flexWrap:'wrap',gap:7,marginBottom:26}}>
+          {proj.tech.map(t=><span key={t} style={{background:'rgba(21,57,53,0.08)',color:'var(--p-muted)',border:'1px solid rgba(21,57,53,0.15)',padding:'4px 12px',borderRadius:14,fontSize:12,fontWeight:500,fontFamily:'var(--mono)'}}>{t}</span>)}
         </div>
         <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
           {proj.github&&<a href={proj.github} target="_blank" rel="noreferrer"><button className="btn-primary">View on GitHub →</button></a>}
@@ -463,41 +465,41 @@ function ConfusionMatrix() {
   return (
     <div style={{display:'flex',gap:40,flexWrap:'wrap',alignItems:'flex-start'}}>
       <div>
-        <div style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--p-muted)',textAlign:'center',marginBottom:10,letterSpacing:1}}>← PREDICTED →</div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,maxWidth:264}}>
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)',textAlign:'center',marginBottom:12,letterSpacing:1.5}}>← PREDICTED →</div>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12,maxWidth:280}}>
           {CM_CELLS.map(cell=>(
             <div key={cell.k} className="matrix-cell" onMouseEnter={()=>setHov(cell.k)} onMouseLeave={()=>setHov(null)}
               style={{background:hov===cell.k?cell.bg:'var(--panel)',borderColor:hov===cell.k?cell.bdr:'var(--pb)',boxShadow:hov===cell.k?`3px 3px 0 ${cell.bdr}44`:'none'}}>
-              <div style={{fontSize:28,fontWeight:700,fontFamily:'var(--serif)',color:hov===cell.k?cell.bdr:'var(--p-ink)'}}>{cell.val}</div>
-              <div style={{fontSize:9,color:'var(--p-muted)',fontFamily:'var(--mono)',marginTop:2}}>{cell.label}</div>
+              <div style={{fontSize:36,fontWeight:900,fontFamily:'var(--serif)',color:hov===cell.k?cell.bdr:'var(--p-ink)'}}>{cell.val}</div>
+              <div style={{fontSize:12,fontWeight:600,color:'var(--p-muted)',fontFamily:'var(--mono)',marginTop:4}}>{cell.label}</div>
             </div>
           ))}
         </div>
-        <div style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--p-muted)',textAlign:'center',marginTop:10,letterSpacing:1}}>↕ ACTUAL ↕</div>
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)',textAlign:'center',marginTop:12,letterSpacing:1.5}}>↕ ACTUAL ↕</div>
       </div>
-      <div style={{flex:1,minWidth:220}}>
+      <div style={{flex:1,minWidth:240}}>
         {hovCell?(
           <div style={{animation:'fadeUp 0.16s ease'}}>
-            <div style={{fontFamily:'var(--serif)',fontSize:16,color:'var(--p-ink)',marginBottom:8,fontWeight:700}}>{hovCell.name}</div>
-            <div style={{fontFamily:'var(--body)',fontSize:15,color:'var(--p-mid)',marginBottom:20,lineHeight:1.8}}>{hovCell.blurb}</div>
-            <div style={{display:'flex',flexDirection:'column',gap:9}}>
+            <div style={{fontFamily:'var(--serif)',fontSize:22,color:'var(--p-ink)',marginBottom:10,fontWeight:900}}>{hovCell.name}</div>
+            <div style={{fontFamily:'var(--body)',fontSize:17,fontWeight:500,color:'var(--p-mid)',marginBottom:22,lineHeight:1.65}}>{hovCell.blurb}</div>
+            <div style={{display:'flex',flexDirection:'column',gap:10}}>
               {Object.entries(metrics).map(([k,v])=>(
                 <div key={k} style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                  <span style={{fontFamily:'var(--mono)',fontSize:9,color:'var(--p-muted)',minWidth:84}}>{k}</span>
-                  <div style={{display:'flex',alignItems:'center',gap:8}}>
-                    <div style={{width:80,height:2,background:'rgba(21,57,53,0.12)',overflow:'hidden'}}>
+                  <span style={{fontFamily:'var(--mono)',fontSize:12,fontWeight:500,color:'var(--p-muted)',minWidth:92}}>{k}</span>
+                  <div style={{display:'flex',alignItems:'center',gap:10}}>
+                    <div style={{width:90,height:3,background:'rgba(21,57,53,0.12)',overflow:'hidden',borderRadius:2}}>
                       <div style={{width:`${v*100}%`,height:'100%',background:'var(--dark)',transition:'width 0.35s ease'}}/>
                     </div>
-                    <span style={{fontFamily:'var(--mono)',fontSize:9,color:'var(--dark)',minWidth:38}}>{v.toFixed(3)}</span>
+                    <span style={{fontFamily:'var(--mono)',fontSize:12,fontWeight:600,color:'var(--dark)',minWidth:42}}>{v.toFixed(3)}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         ):(
-          <div style={{fontFamily:'var(--body)',color:'var(--p-muted)',fontSize:15,lineHeight:1.9,fontStyle:'italic'}}>
+          <div style={{fontFamily:'var(--body)',color:'var(--p-muted)',fontSize:17,fontWeight:500,lineHeight:1.7}}>
             200 test predictions from the credit risk thesis. Hover each quadrant.{' '}
-            <span style={{color:'var(--dark)',fontStyle:'normal'}}>The numbers that matter aren't the big ones.</span>
+            <span style={{color:'var(--dark)',fontWeight:700}}>The numbers that matter aren't the big ones.</span>
           </div>
         )}
       </div>
@@ -533,13 +535,13 @@ export default function Portfolio() {
     return()=>{ clearTimeout(t); ob.disconnect(); };
   },[]);
   useEffect(()=>{
-    const secs=['home','about','skills','projects','demo','github','contact'];
+    const secs=['home','about','skills','projects','demo','github'];
     const h=()=>{ for(const id of secs){ const el=document.getElementById(id); if(el){ const r=el.getBoundingClientRect(); if(r.top<=80&&r.bottom>80){ setActiveSec(id); break; } } } };
     window.addEventListener('scroll',h); return()=>window.removeEventListener('scroll',h);
   },[]);
 
   const go=id=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
-  const NAV=[['home','Home'],['about','About'],['skills','Skills'],['projects','Work'],['demo','ML Lab'],['github','Activity'],['contact','Contact']];
+  const NAV=[['home','Home'],['about','About'],['skills','Skills'],['projects','Work'],['demo','ML Lab'],['github','Activity']];
 
   return (
     <div style={{background:'var(--page)',minHeight:'100vh'}}>
@@ -548,33 +550,85 @@ export default function Portfolio() {
         <div className="nav-links">{NAV.map(([id,lb])=><button key={id} className={`nav-btn${activeSec===id?' active':''}`} onClick={()=>go(id)}>{lb}</button>)}</div>
       </nav>
 
-      {/* ══ HERO — dark island A ══ */}
+      {/* ══ HERO — two columns: home island + contact island ══ */}
       <div id="home" style={{padding:'80px 36px 36px'}}>
-        <div className="island-a" style={{padding:'80px 64px',minHeight:'85vh',display:'flex',alignItems:'center',justifyContent:'center'}}>
-          <div style={{textAlign:'center',maxWidth:820,width:'100%'}}>
-            <div style={{display:'flex',alignItems:'center',gap:0,marginBottom:40,animation:'fadeUp 0.4s ease 0.05s both'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1.45fr 1fr',gap:18,alignItems:'stretch'}}>
+
+          {/* LEFT — home content (island A) */}
+          <div className="island-a" style={{padding:'60px 56px',display:'flex',flexDirection:'column',justifyContent:'center',minHeight:'82vh'}}>
+            <div style={{display:'flex',alignItems:'center',gap:0,marginBottom:36,animation:'fadeUp 0.4s ease 0.05s both'}}>
               <div style={{flex:1,height:'1px',background:'rgba(255,255,255,0.12)'}}/>
-              <div style={{padding:'6px 22px',background:'rgba(255,255,255,0.07)',border:'1px solid rgba(255,255,255,0.12)',backdropFilter:'blur(8px)'}}>
-                <span style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--d-muted)',letterSpacing:5,textTransform:'uppercase',whiteSpace:'nowrap'}}>The Intelligence Dispatch</span>
+              <div style={{padding:'7px 20px',background:'rgba(255,255,255,0.07)',border:'1px solid rgba(255,255,255,0.12)',backdropFilter:'blur(8px)'}}>
+                <span style={{fontFamily:'var(--mono)',fontSize:10,fontWeight:500,color:'var(--d-muted)',letterSpacing:4,textTransform:'uppercase',whiteSpace:'nowrap'}}>The Intelligence Dispatch</span>
               </div>
               <div style={{flex:1,height:'1px',background:'rgba(255,255,255,0.12)'}}/>
             </div>
-            <h1 style={{fontFamily:'var(--serif)',fontWeight:900,fontSize:'clamp(72px,12vw,132px)',letterSpacing:'2px',lineHeight:0.92,marginBottom:0,animation:'fadeUp 0.65s ease 0.12s both'}}>
+
+            <h1 style={{fontFamily:'var(--serif)',fontWeight:900,fontSize:'clamp(60px,9vw,108px)',letterSpacing:'1px',lineHeight:0.92,marginBottom:0,textAlign:'center',animation:'fadeUp 0.65s ease 0.12s both'}}>
               <GlitchName/>
             </h1>
-            <div style={{width:56,height:2,background:'var(--teal)',margin:'22px auto',opacity:0.8,animation:'fadeUp 0.4s ease 0.28s both'}}/>
-            <div style={{fontFamily:'var(--mono)',fontSize:8.5,color:'var(--d-muted)',letterSpacing:4,marginBottom:22,animation:'fadeUp 0.4s ease 0.32s both'}}>
+
+            <div style={{width:64,height:3,background:'var(--teal)',margin:'24px auto',animation:'fadeUp 0.4s ease 0.28s both'}}/>
+
+            <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:4,marginBottom:24,textAlign:'center',animation:'fadeUp 0.4s ease 0.32s both'}}>
               B.TECH CSE  ·  AI/ML ENGINEER  ·  2025
             </div>
-            <p style={{fontFamily:'var(--body)',fontStyle:'italic',fontSize:'clamp(15px,1.9vw,19px)',color:'var(--d-mid)',lineHeight:1.9,maxWidth:520,margin:'0 auto 44px',animation:'fadeUp 0.55s ease 0.38s both'}}>
+
+            <p style={{fontFamily:'var(--body)',fontSize:'clamp(17px,1.7vw,21px)',fontWeight:500,color:'var(--d-mid)',lineHeight:1.65,maxWidth:540,margin:'0 auto 40px',textAlign:'center',animation:'fadeUp 0.55s ease 0.38s both'}}>
               ML engineer who builds models that work, explain themselves, and come with a receipt.
             </p>
+
             <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap',animation:'fadeUp 0.5s ease 0.46s both'}}>
               <button className="btn-primary-d" onClick={()=>go('projects')}>Read the Work</button>
-              <button className="btn-ghost-d" onClick={()=>go('contact')}>Correspondence</button>
               <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer"><button className="btn-ghost-d">GitHub ↗</button></a>
             </div>
+
+            {/* Stat strip at bottom */}
+            <div style={{marginTop:48,paddingTop:24,borderTop:'1px solid rgba(255,255,255,0.1)',display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,animation:'fadeUp 0.5s ease 0.55s both'}}>
+              {[
+                {n:'8',l:'Systems shipped'},
+                {n:ghRepos!=null?String(ghRepos):'…',l:'Public repos'},
+                {n:'0.847',l:'Best AUC'},
+              ].map(({n,l})=>(
+                <div key={l} style={{textAlign:'center'}}>
+                  <div style={{fontFamily:'var(--serif)',fontSize:28,color:'var(--teal)',fontWeight:900,lineHeight:1}}>{n}</div>
+                  <div style={{fontFamily:'var(--mono)',fontSize:10,fontWeight:500,color:'var(--d-muted)',marginTop:6,letterSpacing:0.8,textTransform:'uppercase'}}>{l}</div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* RIGHT — contact content (island B) */}
+          <div className="island-b" style={{padding:'56px 44px',display:'flex',flexDirection:'column',justifyContent:'center'}}>
+            <div className="reveal revealed" style={{textAlign:'center',animation:'fadeUp 0.5s ease 0.2s both'}}>
+              <div className="dispatch-tag dt-dark" style={{justifyContent:'center'}}><span>Correspondence</span></div>
+              <h2 className="sec-title-dark" style={{textAlign:'center',fontSize:'clamp(28px,3.2vw,38px)'}}>Send a dispatch.<br/><em>Let's talk.</em></h2>
+              <p style={{fontFamily:'var(--body)',color:'var(--d-mid)',fontSize:16,fontWeight:500,lineHeight:1.7,margin:'14px auto 32px',maxWidth:380}}>
+                Open to AI/ML roles, research collabs, or a genuinely interesting problem. Bonus points if it involves messy data and no obvious solution.
+              </p>
+            </div>
+
+            <div style={{display:'flex',flexDirection:'column',gap:12,animation:'fadeUp 0.5s ease 0.32s both'}}>
+              {[
+                {l:'Email',    v:'ndiyawar@gmail.com',             h:'mailto:ndiyawar@gmail.com'},
+                {l:'GitHub',   v:'github.com/garimadiyawar',       h:'https://github.com/garimadiyawar'},
+                {l:'LinkedIn', v:'linkedin.com/in/garima-diyawar', h:'https://www.linkedin.com/in/garima-diyawar'},
+              ].map(({l,v,h})=>(
+                <a key={l} href={h} target={h.startsWith('http')?'_blank':undefined} rel="noreferrer" className="contact-link">
+                  <span style={{fontFamily:'var(--mono)',fontSize:10,fontWeight:600,color:'var(--teal)',letterSpacing:2}}>{l.toUpperCase()}</span>
+                  <span style={{fontFamily:'var(--body)',fontSize:15,fontWeight:600,color:'var(--p-ink)'}}>{v}</span>
+                </a>
+              ))}
+            </div>
+
+            <div style={{marginTop:28,textAlign:'center',animation:'fadeUp 0.5s ease 0.45s both'}}>
+              <div style={{display:'inline-flex',alignItems:'center',gap:10,background:'rgba(255,255,255,0.08)',border:'1px solid rgba(255,255,255,0.18)',borderRadius:'4px 16px 4px 16px',padding:'11px 20px'}}>
+                <div style={{width:7,height:7,borderRadius:'50%',background:'#4CAF50',boxShadow:'0 0 8px #4CAF50',animation:'pulse 2.5s ease-in-out infinite'}}/>
+                <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:0.8}}>Available for AI/ML roles · 2025</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -585,17 +639,17 @@ export default function Portfolio() {
             <div className="dispatch-tag dt-light"><span>About the Engineer</span></div>
             <h2 className="sec-title-light">The mind behind<br/><em>the models</em></h2>
           </div>
-          <div className="reveal" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,alignItems:'start'}}>
-            <div className="panel-a" style={{padding:'28px 30px'}}>
+          <div className="reveal" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:18,alignItems:'start'}}>
+            <div className="panel-a" style={{padding:'34px 36px'}}>
               {[
                 "B.Tech CSE graduate with a research interest in applied machine learning, particularly in making models legible. The thesis investigated credit risk prediction for thin-file borrowers, combining ensemble methods with SHAP and LIME-based explainability, and was published as a research paper.",
                 "Beyond the thesis, the work has ranged widely: multi-agent retrieval systems, NLP classifiers for implicit bias in online text, a pharmacovigilance pipeline built on real FDA data, audio-to-arrangement ML, and most recently, a deployed dashboard examining Gen Z's economic position across cost of living, employment, education debt, and housing. The common thread is building things that run, not just things that look good in a notebook.",
                 "Explainability is a recurring theme rather than an afterthought. There is a difference between a model that performs well and one whose decisions can be examined, questioned, and trusted.",
               ].map((para,i)=>(
-                <p key={i} className={i===0?'drop-cap':''} style={{fontFamily:'var(--body)',fontSize:i===0?16:14,color:i===0?'var(--p-ink)':'var(--p-mid)',lineHeight:1.95,marginBottom:i<2?18:0}}>{para}</p>
+                <p key={i} className={i===0?'drop-cap':''} style={{fontFamily:'var(--body)',fontSize:i===0?19:17,fontWeight:i===0?500:500,color:i===0?'var(--p-ink)':'var(--p-mid)',lineHeight:1.75,marginBottom:i<2?20:0}}>{para}</p>
               ))}
             </div>
-            <div className="panel-b" style={{padding:'28px 30px'}}>
+            <div className="panel-b" style={{padding:'34px 36px'}}>
               {[
                 {l:'Education',  v:'B.Tech, Computer Science & Engineering'},
                 {l:'Focus',      v:'Agentic AI · Explainable ML · NLP · Audio ML'},
@@ -603,18 +657,18 @@ export default function Portfolio() {
                 {l:'Shipped',    v:'8 end-to-end systems, all public on GitHub'},
                 {l:'Open to',    v:'AI/ML roles, research collabs, interesting problems'},
               ].map(({l,v},i,arr)=>(
-                <div key={l} style={{borderBottom:i<arr.length-1?'1px solid rgba(21,57,53,0.1)':'none',paddingBottom:11,marginBottom:11,display:'flex',gap:14,alignItems:'flex-start'}}>
-                  <span style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--teal)',letterSpacing:1,minWidth:72,paddingTop:2,flexShrink:0,textTransform:'uppercase'}}>{l}</span>
-                  <span style={{fontFamily:'var(--body)',fontSize:14,color:'var(--p-ink)',lineHeight:1.5}}>{v}</span>
+                <div key={l} style={{borderBottom:i<arr.length-1?'1px solid rgba(21,57,53,0.12)':'none',paddingBottom:14,marginBottom:14,display:'flex',gap:18,alignItems:'flex-start'}}>
+                  <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:600,color:'var(--teal)',letterSpacing:1,minWidth:82,paddingTop:3,flexShrink:0,textTransform:'uppercase'}}>{l}</span>
+                  <span style={{fontFamily:'var(--body)',fontSize:16,fontWeight:500,color:'var(--p-ink)',lineHeight:1.5}}>{v}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12,marginTop:16}}>
+          <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginTop:18}}>
             {[{n:'8',l:'Systems shipped'},{n:ghRepos!=null?String(ghRepos):'…',l:'Public repos'},{n:'0.847',l:'Best AUC, credit risk'},{n:'17%',l:'MAE improvement, M5'}].map(({n,l})=>(
               <div key={l} className="stat-pill">
-                <div style={{fontFamily:'var(--serif)',fontSize:24,color:'var(--dark)',fontWeight:700,lineHeight:1}}>{n}</div>
-                <div style={{fontFamily:'var(--mono)',fontSize:9,color:'var(--p-muted)',marginTop:7,letterSpacing:0.5}}>{l}</div>
+                <div style={{fontFamily:'var(--serif)',fontSize:32,color:'var(--dark)',fontWeight:900,lineHeight:1}}>{n}</div>
+                <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)',marginTop:10,letterSpacing:0.8}}>{l}</div>
               </div>
             ))}
           </div>
@@ -628,7 +682,7 @@ export default function Portfolio() {
             <div className="reveal" style={{textAlign:'center',marginBottom:44}}>
               <div className="dispatch-tag dt-dark" style={{justifyContent:'center'}}><span>Technical Arsenal</span></div>
               <h2 className="sec-title-dark" style={{textAlign:'center'}}>The Toolkit</h2>
-              <p style={{fontFamily:'var(--body)',color:'var(--d-muted)',fontSize:14,marginTop:6,fontStyle:'italic'}}>Hover any tile to explore the domain</p>
+              <p style={{fontFamily:'var(--body)',color:'var(--d-muted)',fontSize:17,fontWeight:500,marginTop:8}}>Hover any tile to explore the domain</p>
             </div>
             <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
               {SKILLS.map((sk,i)=><SkillTile key={sk.name} sk={sk} idx={i}/>)}
@@ -643,7 +697,7 @@ export default function Portfolio() {
           <div className="reveal" style={{marginBottom:36}}>
             <div className="dispatch-tag dt-light"><span>From the Research Desk</span></div>
             <h2 className="sec-title-light">Projects &<br/><em>Research</em></h2>
-            <p style={{fontFamily:'var(--body)',color:'var(--p-muted)',fontSize:14,marginTop:6,fontStyle:'italic'}}>Click any card to read more</p>
+            <p style={{fontFamily:'var(--body)',color:'var(--p-muted)',fontSize:17,fontWeight:500,marginTop:8}}>Click any card to read more</p>
           </div>
           <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:14}}>
             {PROJECTS.map((p,i)=><ProjectCard key={p.id} proj={p} idx={i} onClick={()=>setActiveProj(p)}/>)}
@@ -658,7 +712,7 @@ export default function Portfolio() {
             <div className="reveal" style={{marginBottom:36}}>
               <div className="dispatch-tag dt-dark"><span>Dissertation Results</span></div>
               <h2 className="sec-title-dark">Confusion Matrix<br/><em>Explorer</em></h2>
-              <p style={{fontFamily:'var(--body)',color:'var(--d-mid)',fontSize:15,lineHeight:1.85,maxWidth:500,marginTop:10,fontStyle:'italic'}}>
+              <p style={{fontFamily:'var(--body)',color:'var(--d-mid)',fontSize:18,fontWeight:500,lineHeight:1.7,maxWidth:560,marginTop:12}}>
                 200 test predictions from the credit risk thesis. Hover each quadrant. The numbers that matter aren't the big ones.
               </p>
             </div>
@@ -671,9 +725,9 @@ export default function Portfolio() {
                 {q:'Why not just use accuracy?',a:"On imbalanced datasets, 'predicts safe every time' scores 90% accuracy and misses every default. Accuracy is the metric of someone who hasn't thought about the problem."},
                 {q:'Where does SHAP come in?',a:"SHAP turns 'the model decided' into 'here is exactly why.' It makes decisions auditable to regulators, legible to loan officers, and contestable by borrowers."},
               ].map(({q,a},i)=>(
-                <div key={q} className={['panel-c','panel-a','panel-b'][i]} style={{padding:18}}>
-                  <div style={{fontFamily:'var(--serif)',fontSize:13,fontWeight:700,color:'var(--p-ink)',marginBottom:8,lineHeight:1.4}}>{q}</div>
-                  <div style={{fontFamily:'var(--body)',fontSize:13,color:'var(--p-mid)',lineHeight:1.8}}>{a}</div>
+                <div key={q} className={['panel-c','panel-a','panel-b'][i]} style={{padding:22}}>
+                  <div style={{fontFamily:'var(--serif)',fontSize:17,fontWeight:900,color:'var(--p-ink)',marginBottom:10,lineHeight:1.3}}>{q}</div>
+                  <div style={{fontFamily:'var(--body)',fontSize:15,fontWeight:500,color:'var(--p-mid)',lineHeight:1.7}}>{a}</div>
                 </div>
               ))}
             </div>
@@ -688,54 +742,21 @@ export default function Portfolio() {
             <div className="dispatch-tag dt-light"><span>GitHub Activity</span></div>
             <h2 className="sec-title-light">Commit by<br/><em>commit</em></h2>
           </div>
-          <div className="reveal panel-a" style={{padding:28}}>
+          <div className="reveal panel-a" style={{padding:32}}>
             <GitHubActivity/>
-            <div style={{marginTop:22,borderTop:'1px solid rgba(21,57,53,0.1)',paddingTop:16,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:14}}>
+            <div style={{marginTop:24,borderTop:'1px solid rgba(21,57,53,0.12)',paddingTop:20,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:18}}>
               <div>
-                <div style={{fontFamily:'var(--serif)',fontSize:15,color:'var(--p-ink)',fontWeight:700,marginBottom:3}}>Consistently building</div>
-                <div style={{fontFamily:'var(--mono)',fontSize:10,color:'var(--p-muted)'}}>
-                  Live · <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer" style={{color:'var(--dark)'}}>github.com/garimadiyawar ↗</a>
+                <div style={{fontFamily:'var(--serif)',fontSize:19,color:'var(--p-ink)',fontWeight:900,marginBottom:4}}>Consistently building</div>
+                <div style={{fontFamily:'var(--mono)',fontSize:13,fontWeight:500,color:'var(--p-muted)'}}>
+                  Live · <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer" style={{color:'var(--dark)',fontWeight:600}}>github.com/garimadiyawar ↗</a>
                 </div>
               </div>
               {[[ghRepos!=null?String(ghRepos):'…','Public repos'],['8','Projects'],['∞','Experiments']].map(([n,l])=>(
                 <div key={l} style={{textAlign:'center'}}>
-                  <div style={{fontFamily:'var(--serif)',fontSize:20,color:'var(--dark)',fontWeight:700}}>{n}</div>
-                  <div style={{fontFamily:'var(--mono)',fontSize:9,color:'var(--p-muted)'}}>{l}</div>
+                  <div style={{fontFamily:'var(--serif)',fontSize:26,color:'var(--dark)',fontWeight:900}}>{n}</div>
+                  <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)'}}>{l}</div>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ══ CONTACT — dark island B ══ */}
-      <div id="contact" style={{padding:'36px 36px 0'}}>
-        <div className="island-b" style={{padding:'60px 48px 80px'}}>
-          <div style={{maxWidth:540,margin:'0 auto',textAlign:'center'}}>
-            <div className="reveal">
-              <div className="dispatch-tag dt-dark" style={{justifyContent:'center'}}><span>Correspondence</span></div>
-              <h2 className="sec-title-dark">Send a dispatch.<br/><em>Let's talk.</em></h2>
-              <p style={{fontFamily:'var(--body)',fontStyle:'italic',color:'var(--d-mid)',fontSize:16,lineHeight:1.9,margin:'14px auto 36px',maxWidth:420}}>
-                Open to AI/ML roles, research collabs, or a genuinely interesting problem. Bonus points if it involves messy data and no obvious solution.
-              </p>
-            </div>
-            <div className="reveal" style={{display:'flex',flexDirection:'column',gap:10}}>
-              {[
-                {l:'Email',    v:'ndiyawar@gmail.com',             h:'mailto:ndiyawar@gmail.com'},
-                {l:'GitHub',   v:'github.com/garimadiyawar',       h:'https://github.com/garimadiyawar'},
-                {l:'LinkedIn', v:'linkedin.com/in/garima-diyawar', h:'https://www.linkedin.com/in/garima-diyawar'},
-              ].map(({l,v,h})=>(
-                <a key={l} href={h} target={h.startsWith('http')?'_blank':undefined} rel="noreferrer" className="contact-link">
-                  <span style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--teal)',letterSpacing:2}}>{l.toUpperCase()}</span>
-                  <span style={{fontFamily:'var(--body)',fontSize:14,color:'var(--p-ink)'}}>{v}</span>
-                </a>
-              ))}
-            </div>
-            <div className="reveal" style={{marginTop:30}}>
-              <div style={{display:'inline-flex',alignItems:'center',gap:8,background:'rgba(255,255,255,0.1)',border:'1px solid rgba(255,255,255,0.2)',borderRadius:'4px 16px 4px 16px',padding:'9px 18px'}}>
-                <div style={{width:6,height:6,borderRadius:'50%',background:'#4CAF50',boxShadow:'0 0 6px #4CAF50',animation:'pulse 2.5s ease-in-out infinite'}}/>
-                <span style={{fontFamily:'var(--mono)',fontSize:9,color:'var(--d-muted)',letterSpacing:0.5}}>Available for AI/ML roles · 2025</span>
-              </div>
             </div>
           </div>
         </div>
@@ -743,9 +764,9 @@ export default function Portfolio() {
 
       {/* FOOTER */}
       <footer>
-        <div style={{fontFamily:'var(--serif)',fontSize:14,color:'var(--teal)',fontWeight:700,fontStyle:'italic'}}>Garima Diyawar</div>
-        <div style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--d-muted)',letterSpacing:1}}>data · models · curiosity · 2025</div>
-        <div style={{fontFamily:'var(--mono)',fontSize:8,color:'var(--d-muted)',letterSpacing:1}}>© 2025</div>
+        <div style={{fontFamily:'var(--serif)',fontSize:18,color:'var(--teal)',fontWeight:700}}>Garima Diyawar</div>
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:1}}>data · models · curiosity · 2025</div>
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:1}}>© 2025</div>
       </footer>
 
       {activeProj&&<ProjectModal proj={activeProj} onClose={()=>setActiveProj(null)}/>}
