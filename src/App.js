@@ -27,11 +27,14 @@ const CSS = `
 
   *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; font-style:normal !important; }
   html { scroll-behavior:smooth; }
-  body {
+  body, html {
     font-family:var(--body); font-size:19px; font-weight:500;
     background: #0F0E18;
     min-height:100vh;
-    color:var(--p-ink); overflow-x:hidden;
+    color:var(--p-ink);
+    overflow-x:hidden;
+    width:100%;
+    max-width:100%;
   }
   em { color:var(--gold); font-weight:700; }
 
@@ -130,6 +133,7 @@ const CSS = `
     display:inline-flex; align-items:center; justify-content:space-between;
     padding:0 28px; height:50px;
     white-space:nowrap; gap:28px;
+    max-width:calc(100vw - 20px);
   }
   .nav-logo { font-family:var(--serif); font-size:17px; font-weight:700; color:var(--gold); }
   .nav-links { display:flex; gap:26px; }
@@ -368,6 +372,7 @@ const CSS = `
 
   @media (max-width: 640px) {
     body { font-size:15px; }
+    html, body { overflow-x:hidden; width:100%; }
 
     #home { padding:70px 20px 20px !important; }
     #about { padding:20px 16px !important; }
@@ -378,8 +383,9 @@ const CSS = `
     #github { padding:20px 16px !important; }
 
     nav {
-      top:8px; padding:0 16px; height:46px; gap:12px;
+      top:8px; padding:0 14px; height:46px; gap:8px;
       border-radius:30px;
+      max-width:calc(100vw - 16px);
     }
     .nav-btn { font-size:8px; letter-spacing:0.5px; }
 
@@ -421,6 +427,7 @@ const CSS = `
 
   @media (max-width: 480px) {
     body { font-size:14px; }
+    html, body { width:100%; max-width:100%; overflow-x:hidden; }
 
     #home { padding:60px 16px 16px !important; }
 
@@ -771,7 +778,7 @@ export default function Portfolio() {
   const NAV=[['home','Home'],['about','About'],['skills','Skills'],['projects','Work'],['demo','ML Lab'],['github','Activity']];
 
   return (
-    <div style={{background:'var(--page)',minHeight:'100vh'}}>
+    <div style={{background:'var(--page)',minHeight:'100vh',width:'100%',maxWidth:'100%',overflowX:'hidden'}}>
       <div className="storm-bg" aria-hidden="true">
         <div className="storm-orb s1"/><div className="storm-orb s2"/><div className="storm-orb s3"/><div className="storm-orb s4"/>
       </div>
