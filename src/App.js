@@ -4,16 +4,16 @@ const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=EB+Garamond:wght@400;500&family=DM+Mono:wght@300;400;500&display=swap');
 
   :root {
-    --page:    #080C16;
-    --dark:    #0C1020;
-    --dark2:   #181E30;
+    --page:    #0F0E18;
+    --dark:    #1A1927;
+    --dark2:   #252232;
     --gold:    #D4A820;
     --gold-b:  #F0C020;
     --teal:    #00D4C5;
     --teal-b:  #20EDE0;
-    --panel:   rgba(12,18,36,0.62);
-    --panel-b: rgba(12,18,36,0.45);
-    --pb:      rgba(201,168,76,0.18);
+    --panel:   rgba(26,25,39,0.72);
+    --panel-b: rgba(26,25,39,0.58);
+    --pb:      rgba(201,168,76,0.12);
     --p-ink:   #EDE8E0;
     --p-mid:   #C5B5A8;
     --p-muted: #B8A89A;
@@ -29,7 +29,7 @@ const CSS = `
   html { scroll-behavior:smooth; }
   body {
     font-family:var(--body); font-size:19px; font-weight:500;
-    background: #080C16;
+    background: #0F0E18;
     min-height:100vh;
     color:var(--p-ink); overflow-x:hidden;
   }
@@ -53,36 +53,55 @@ const CSS = `
   .revealed { opacity:1; transform:translateY(0); }
 
   /* ── Storm background ── */
-  .storm-bg { position:fixed; inset:0; z-index:-1; overflow:hidden; background:#080C16; }
+  .storm-bg { position:fixed; inset:0; z-index:-1; overflow:hidden; background:linear-gradient(180deg, #0F0E18 0%, #16151F 40%, #1A1927 100%); }
   .storm-orb { position:absolute; border-radius:50%; pointer-events:none; }
   .s1 { width:70vw; height:70vw; filter:blur(75px);
-        background:radial-gradient(circle, rgba(110,50,200,0.70) 0%, rgba(70,20,150,0.35) 40%, transparent 70%);
+        background:radial-gradient(circle, rgba(120,80,160,0.65) 0%, rgba(70,50,120,0.40) 40%, transparent 70%);
         top:-20%; left:-15%; animation:orbDrift1 28s ease-in-out infinite; }
   .s2 { width:60vw; height:60vw; filter:blur(70px);
-        background:radial-gradient(circle, rgba(30,70,190,0.75) 0%, rgba(10,35,120,0.40) 40%, transparent 70%);
+        background:radial-gradient(circle, rgba(100,90,150,0.70) 0%, rgba(60,50,100,0.35) 40%, transparent 70%);
         bottom:-20%; right:-15%; animation:orbDrift2 34s ease-in-out infinite; }
   .s3 { width:52vw; height:52vw; filter:blur(85px);
-        background:radial-gradient(circle, rgba(90,30,165,0.55) 0%, transparent 70%);
+        background:radial-gradient(circle, rgba(140,110,180,0.60) 0%, transparent 70%);
         top:35%; left:25%; animation:orbDrift3 22s ease-in-out infinite; }
   .s4 { width:45vw; height:45vw; filter:blur(100px);
-        background:radial-gradient(circle, rgba(180,110,20,0.30) 0%, rgba(150,80,10,0.14) 40%, transparent 70%);
+        background:radial-gradient(circle, rgba(200,160,100,0.25) 0%, rgba(160,130,80,0.12) 40%, transparent 70%);
         top:55%; left:45%; animation:orbDrift4 38s ease-in-out infinite; }
 
   /* ── Thunder flashes ── */
   @keyframes thunderFlash {
-    0%, 87%, 88.5%, 90%, 100% { opacity:0; }
-    87.5%, 89% { opacity:1; }
+    0%, 85%, 88%, 91%, 100% { opacity:0; }
+    86%, 87.5%, 89%, 90% { opacity:1; }
+  }
+  @keyframes thunderFlash2 {
+    0%, 87%, 90%, 93%, 100% { opacity:0; }
+    88%, 89.5%, 91%, 92% { opacity:0.8; }
   }
   .thunder-flash {
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background: radial-gradient(ellipse at 30% 10%, rgba(180,200,255,0.14) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 5%, rgba(200,180,255,0.09) 0%, transparent 50%);
-    animation: thunderFlash 12s ease-in-out infinite;
+    position:fixed; inset:0; z-index:40; pointer-events:none;
+    background: radial-gradient(ellipse at 30% 10%, rgba(220,210,255,0.35) 0%, rgba(200,180,255,0.15) 40%, transparent 70%),
+                radial-gradient(ellipse at 70% 5%, rgba(200,190,255,0.25) 0%, transparent 60%);
+    animation: thunderFlash 11s ease-in-out infinite;
   }
   .thunder-flash-2 {
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background: radial-gradient(ellipse at 75% 15%, rgba(200,210,255,0.16) 0%, transparent 55%);
-    animation: thunderFlash 19s ease-in-out 6s infinite;
+    position:fixed; inset:0; z-index:40; pointer-events:none;
+    background: radial-gradient(ellipse at 75% 15%, rgba(210,200,255,0.40) 0%, rgba(180,160,220,0.15) 50%, transparent 70%),
+                radial-gradient(ellipse at 20% 70%, rgba(200,190,240,0.20) 0%, transparent 60%);
+    animation: thunderFlash2 15s ease-in-out 6s infinite;
+  }
+
+  /* ── Atmospheric fog ── */
+  .atmos-fog { position:fixed; inset:0; z-index:2; pointer-events:none;
+    background: linear-gradient(180deg,
+      rgba(120,100,150,0.08) 0%,
+      rgba(100,80,130,0.12) 30%,
+      rgba(80,70,110,0.08) 60%,
+      rgba(100,90,130,0.10) 100%);
+    animation: fogDrift 45s ease-in-out infinite;
+  }
+  @keyframes fogDrift {
+    0%, 100% { opacity:0.6; }
+    50% { opacity:0.9; }
   }
 
   /* ── Rain particles ── */
@@ -682,9 +701,9 @@ function ConfusionMatrix() {
                   <span style={{fontFamily:'var(--mono)',fontSize:12,fontWeight:500,color:'var(--p-muted)',minWidth:92}}>{k}</span>
                   <div style={{display:'flex',alignItems:'center',gap:10}}>
                     <div style={{width:90,height:3,background:'rgba(21,57,53,0.12)',overflow:'hidden',borderRadius:2}}>
-                      <div style={{width:`${v*100}%`,height:'100%',background:'var(--dark)',transition:'width 0.35s ease'}}/>
+                      <div style={{width:`${v*100}%`,height:'100%',background:'var(--gold)',transition:'width 0.35s ease'}}/>
                     </div>
-                    <span style={{fontFamily:'var(--mono)',fontSize:12,fontWeight:600,color:'var(--dark)',minWidth:42}}>{v.toFixed(3)}</span>
+                    <span style={{fontFamily:'var(--mono)',fontSize:12,fontWeight:600,color:'var(--gold)',minWidth:42}}>{v.toFixed(3)}</span>
                   </div>
                 </div>
               ))}
@@ -693,7 +712,7 @@ function ConfusionMatrix() {
         ):(
           <div style={{fontFamily:'var(--body)',color:'var(--p-muted)',fontSize:17,fontWeight:500,lineHeight:1.7}}>
             200 test predictions from the credit risk thesis. Hover each quadrant.{' '}
-            <span style={{color:'var(--dark)',fontWeight:700}}>The numbers that matter aren't the big ones.</span>
+            <span style={{color:'var(--gold)',fontWeight:700}}>The numbers that matter aren't the big ones.</span>
           </div>
         )}
       </div>
@@ -755,17 +774,18 @@ export default function Portfolio() {
     <div style={{background:'var(--page)',minHeight:'100vh'}}>
       <div className="storm-bg" aria-hidden="true">
         <div className="storm-orb s1"/><div className="storm-orb s2"/><div className="storm-orb s3"/><div className="storm-orb s4"/>
-        <div className="thunder-flash"/><div className="thunder-flash-2"/>
-        <div className="rain-container">
-          {RAIN_DROPS.map((d,i) => (
-            <div key={i} className="rain-drop" style={{
-              left:d.left, height:d.height,
-              animationDuration:d.duration,
-              animationDelay:d.delay,
-              opacity:d.opacity
-            }}/>
-          ))}
-        </div>
+      </div>
+      <div className="thunder-flash" aria-hidden="true"/><div className="thunder-flash-2" aria-hidden="true"/>
+      <div className="atmos-fog" aria-hidden="true"/>
+      <div className="rain-container" style={{zIndex:50}}>
+        {RAIN_DROPS.map((d,i) => (
+          <div key={i} className="rain-drop" style={{
+            left:d.left, height:d.height,
+            animationDuration:d.duration,
+            animationDelay:d.delay,
+            opacity:d.opacity
+          }}/>
+        ))}
       </div>
       <nav>
         {/*<div className="nav-logo">Garima Diyawar</div>*/}
@@ -773,7 +793,7 @@ export default function Portfolio() {
       </nav>
 
       {/* ══ HERO ══ */}
-      <div id="home" style={{padding:'80px 36px 36px'}}>
+      <div id="home" style={{padding:0}}>
         <div style={{display:'grid',gridTemplateColumns:'1.45fr 1fr',gap:18,alignItems:'stretch'}}>
 
           {/* LEFT */}
@@ -802,6 +822,7 @@ export default function Portfolio() {
 
             <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap',animation:'fadeUp 0.5s ease 0.46s both'}}>
               <button className="btn-primary-d" onClick={()=>go('projects')}>Read the Work</button>
+              <a href="/Garima_Diyawar_Resume.docx" download="Garima_Diyawar_Resume.docx"><button className="btn-ghost-d">Resume ↗</button></a>
               <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer"><button className="btn-ghost-d">GitHub ↗</button></a>
             </div>
 
@@ -854,7 +875,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ ABOUT ══ */}
-      <div id="about" style={{padding:'36px 36px'}}>
+      <div id="about" style={{padding:0}}>
         <div style={{maxWidth:980,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:20}}>
             <div className="dispatch-tag dt-light"><span>About Me</span></div>
@@ -917,7 +938,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ SKILLS ══ */}
-      <div id="skills" style={{padding:'36px'}}>
+      <div id="skills" style={{padding:0}}>
         <div className="island-b" style={{padding:'60px 48px'}}>
           <div style={{maxWidth:1060,margin:'0 auto'}}>
             <div className="reveal" style={{textAlign:'center',marginBottom:44}}>
@@ -933,7 +954,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ PROJECTS ══ */}
-      <div id="projects" style={{padding:'36px'}}>
+      <div id="projects" style={{padding:0}}>
         <div style={{maxWidth:1060,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:36}}>
             <div className="dispatch-tag dt-light"><span>From the Research Desk</span></div>
@@ -947,7 +968,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ ML LAB ══ */}
-      <div id="demo" style={{padding:'36px'}}>
+      <div id="demo" style={{padding:0}}>
         <div className="island-a" style={{padding:'60px 48px'}}>
           <div style={{maxWidth:920,margin:'0 auto'}}>
             <div className="reveal" style={{marginBottom:36}}>
@@ -977,7 +998,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ GITHUB ══ */}
-      <div id="github" style={{padding:'36px'}}>
+      <div id="github" style={{padding:0}}>
         <div style={{maxWidth:860,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:24}}>
             <div className="dispatch-tag dt-light"><span>GitHub Activity</span></div>
