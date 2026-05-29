@@ -93,36 +93,55 @@ const CSS = `
     animation: thunderFlash2 15s ease-in-out 6s infinite;
   }
 
-  /* ── Blurred animated clouds ── */
+  /* ── Atmospheric fog ── */
+  .atmos-fog { position:fixed; inset:0; z-index:2; pointer-events:none;
+    background: linear-gradient(180deg,
+      rgba(120,100,150,0.08) 0%,
+      rgba(100,80,130,0.12) 30%,
+      rgba(80,70,110,0.08) 60%,
+      rgba(100,90,130,0.10) 100%);
+    animation: fogDrift 45s ease-in-out infinite;
+  }
+  @keyframes fogDrift {
+    0%, 100% { opacity:0.6; }
+    50% { opacity:0.9; }
+  }
+
+  /* ── Animated cloud fog layers ── */
   @keyframes cloudDrift1 { 0% { transform:translateX(-100%); } 100% { transform:translateX(100vw); } }
   @keyframes cloudDrift2 { 0% { transform:translateX(0); } 100% { transform:translateX(100vw); } }
   @keyframes cloudDrift3 { 0% { transform:translateX(-50%); } 100% { transform:translateX(100vw); } }
 
   .cloud-layer {
     position:fixed; inset:0; z-index:3; pointer-events:none;
-    filter:blur(35px);
-    opacity:0.30;
+    background-size:200% 100%;
+    filter:blur(40px);
+    opacity:0.15;
     will-change:transform;
   }
 
   .cloud-1 {
     background:linear-gradient(90deg, transparent 0%, rgba(150,150,150,0.8) 15%, rgba(140,140,140,0.8) 30%, transparent 50%, transparent 70%, rgba(150,150,150,0.7) 85%, transparent 100%);
     animation:cloudDrift1 180s linear infinite;
+    top:0; height:35%;
   }
 
   .cloud-2 {
     background:linear-gradient(90deg, transparent 0%, rgba(160,160,160,0.7) 10%, rgba(150,150,150,0.8) 25%, transparent 45%, transparent 60%, rgba(160,160,160,0.75) 80%, transparent 100%);
     animation:cloudDrift2 220s linear infinite 30s;
+    top:30%; height:40%;
   }
 
   .cloud-3 {
     background:linear-gradient(90deg, transparent 0%, rgba(140,140,140,0.75) 12%, rgba(150,150,150,0.8) 28%, transparent 48%, transparent 65%, rgba(140,140,140,0.7) 82%, transparent 100%);
     animation:cloudDrift3 200s linear infinite 60s;
+    top:60%; height:38%;
   }
 
   .cloud-4 {
     background:linear-gradient(90deg, transparent 0%, rgba(155,155,155,0.7) 18%, rgba(145,145,145,0.75) 35%, transparent 55%, transparent 70%, rgba(155,155,155,0.65) 88%, transparent 100%);
     animation:cloudDrift1 240s linear infinite 90s;
+    top:20%; height:30%;
   }
 
   /* ── Rain particles ── */
@@ -801,6 +820,7 @@ export default function Portfolio() {
         <div className="storm-orb s1"/><div className="storm-orb s2"/><div className="storm-orb s3"/><div className="storm-orb s4"/>
       </div>
       <div className="thunder-flash" aria-hidden="true"/><div className="thunder-flash-2" aria-hidden="true"/>
+      <div className="atmos-fog" aria-hidden="true"/>
       <div className="cloud-layer cloud-1" aria-hidden="true"/>
       <div className="cloud-layer cloud-2" aria-hidden="true"/>
       <div className="cloud-layer cloud-3" aria-hidden="true"/>
