@@ -15,11 +15,11 @@ const CSS = `
     --panel-b: rgba(12,18,36,0.45);
     --pb:      rgba(201,168,76,0.18);
     --p-ink:   #EDE8E0;
-    --p-mid:   #A09888;
-    --p-muted: #706860;
+    --p-mid:   #C5B5A8;
+    --p-muted: #B8A89A;
     --d-ink:   #EDE8E0;
-    --d-mid:   #A09888;
-    --d-muted: #706860;
+    --d-mid:   #C5B5A8;
+    --d-muted: #B8A89A;
     --serif:   'Playfair Display', Georgia, serif;
     --body:    'EB Garamond', Georgia, serif;
     --mono:    'DM Mono', 'Courier New', monospace;
