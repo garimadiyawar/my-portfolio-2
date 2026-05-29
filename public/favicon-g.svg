@@ -1,0 +1,67 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes diamondSpark1 { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+      @keyframes diamondSpark2 { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.9; } }
+      @keyframes diamondSpark3 { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+      .diamond1 { animation: diamondSpark1 1.8s ease-in-out infinite; }
+      .diamond2 { animation: diamondSpark2 2.2s ease-in-out infinite 0.3s; }
+      .diamond3 { animation: diamondSpark3 2s ease-in-out infinite 0.6s; }
+    </style>
+    <filter id="diamondGlow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Slender cursive G in white -->
+  <path d="M 130 45 Q 155 55 160 80 Q 162 100 155 120 Q 140 155 105 165 Q 70 175 45 160 Q 30 150 28 130 L 55 128 Q 57 140 70 145 Q 85 152 105 145 Q 125 138 130 115 L 70 115 L 70 95 Q 70 90 75 88 L 130 88 Q 135 70 130 55 Q 120 40 100 40 Q 75 40 60 55 Q 48 68 48 85 Q 48 95 52 105 L 28 105 Q 25 90 25 75 Q 25 50 45 35 Q 65 25 95 25 Q 130 25 145 42 Q 160 58 160 80 Q 160 95 155 108 L 160 108 Q 162 100 162 90 Q 162 55 145 40 Q 130 28 100 28 Q 70 28 50 45 Q 35 60 35 85 Q 35 110 50 130 Q 70 155 105 160 Q 140 165 160 145 Q 172 130 175 105 Q 177 80 172 60 Q 160 35 130 45 Z"
+        fill="white" stroke="white" stroke-width="1.5" stroke-linejoin="round" filter="url(#diamondGlow)"/>
+
+  <!-- Diamond sparkles -->
+  <!-- Top right large diamond -->
+  <g class="diamond1">
+    <polygon points="165,55 170,62 165,70 160,62" fill="white" filter="url(#diamondGlow)"/>
+    <polygon points="165,55 168,60 165,65 162,60" fill="rgba(255,255,255,0.6)"/>
+  </g>
+
+  <!-- Top left small diamond -->
+  <g class="diamond2">
+    <polygon points="35,50 38,55 35,60 32,55" fill="white" filter="url(#diamondGlow)"/>
+    <polygon points="35,50 36,53 35,56 34,53" fill="rgba(255,255,255,0.5)"/>
+  </g>
+
+  <!-- Middle right diamond -->
+  <g class="diamond3">
+    <polygon points="175,90 180,98 175,106 170,98" fill="white" filter="url(#diamondGlow)"/>
+    <polygon points="175,90 178,96 175,102 172,96" fill="rgba(255,255,255,0.6)"/>
+  </g>
+
+  <!-- Bottom left small diamond -->
+  <g class="diamond1" style="animation-delay: 0.9s;">
+    <polygon points="30,145 33,150 30,155 27,150" fill="white" filter="url(#diamondGlow)"/>
+    <polygon points="30,145 31,148 30,151 29,148" fill="rgba(255,255,255,0.5)"/>
+  </g>
+
+  <!-- Bottom right medium diamond -->
+  <g class="diamond2" style="animation-delay: 1.2s;">
+    <polygon points="168,150 173,158 168,166 163,158" fill="white" filter="url(#diamondGlow)"/>
+    <polygon points="168,150 171,156 168,162 165,156" fill="rgba(255,255,255,0.55)"/>
+  </g>
+
+  <!-- Tiny accent sparkles -->
+  <g class="diamond3" style="animation-delay: 1.5s;">
+    <circle cx="145" cy="45" r="1.5" fill="white" opacity="0.7" filter="url(#diamondGlow)"/>
+  </g>
+
+  <g class="diamond1" style="animation-delay: 0.4s;">
+    <circle cx="50" cy="170" r="1" fill="white" opacity="0.6" filter="url(#diamondGlow)"/>
+  </g>
+
+  <g class="diamond2" style="animation-delay: 0.8s;">
+    <circle cx="155" cy="140" r="1.2" fill="white" opacity="0.7" filter="url(#diamondGlow)"/>
+  </g>
+</svg>

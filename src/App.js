@@ -871,7 +871,7 @@ export default function Portfolio() {
 
             <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap',animation:'fadeUp 0.5s ease 0.46s both'}}>
               <button className="btn-primary-d" onClick={()=>go('projects')}>Read the Work</button>
-              <a href="/Garima_Diyawar_Resume.docx" download="Garima_Diyawar_Resume.docx"><button className="btn-ghost-d">Resume ↗</button></a>
+              <a href="/Garima_Diyawar_Resume.pdf" download="Garima_Diyawar_Resume.pdf"><button className="btn-ghost-d">Resume ↗</button></a>
               <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer"><button className="btn-ghost-d">GitHub ↗</button></a>
             </div>
 
