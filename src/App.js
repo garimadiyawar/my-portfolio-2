@@ -449,7 +449,7 @@ const SKILLS = [
   { name:'Machine Learning', icon:'⚙', tools:['XGBoost','LightGBM','Scikit-learn','Optuna'],     accent:'#153935', viz:'pipe'    },
   { name:'Deep Learning',    icon:'◎', tools:['PyTorch','HuggingFace','RoBERTa','Transformers'], accent:'#2ABFB0', viz:'neural'  },
   { name:'Agentic AI',       icon:'◈', tools:['LangGraph','LangChain','Ollama','LangSmith'],      accent:'#153935', viz:'agent'   },
-  { name:'Data Analysis',    icon:'▣', tools:['Pandas','NumPy','SQL','Polars'],                   accent:'#2A5550', viz:'bar'     },
+  { name:'Data Analysis',    icon:'▣', tools:['Pandas','NumPy','SQL','Polars'],                   accent:'#20EDE0', viz:'bar'     },
   { name:'NLP',              icon:'◇', tools:['spaCy','Transformers','NLTK','Text Analytics'],    accent:'#2ABFB0', viz:'tok'     },
   { name:'XAI & Eval',       icon:'◬', tools:['SHAP','LIME','MLflow','Evidently'],                accent:'#153935', viz:'metrics' },
   { name:'Cloud & Deploy',   icon:'◐', tools:['Azure AI','Streamlit','FastAPI','GitHub Actions'], accent:'#2A5550', viz:'code'    },
@@ -599,12 +599,12 @@ function ProjectCard({ proj, idx, onClick }) {
         <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)',letterSpacing:0.8}}>{proj.cat}</span>
         <span style={{
           fontFamily:'var(--mono)',fontSize:10,fontWeight:600,letterSpacing:1.5,padding:'3px 9px',borderRadius:12,
-          background:proj.live_badge?'var(--dark)':'rgba(21,57,53,0.12)',
-          color:proj.live_badge?'var(--teal)':'var(--dark)',
-          border:proj.live_badge?'none':'1px solid rgba(21,57,53,0.2)',
+          background:proj.live_badge?'rgba(212,168,32,0.15)':'rgba(212,168,32,0.12)',
+          color:proj.live_badge?'var(--teal-b)':'var(--gold)',
+          border:proj.live_badge?'1px solid rgba(212,168,32,0.3)':'1px solid rgba(212,168,32,0.25)',
         }}>{proj.badge}</span>
       </div>
-      <div style={{fontFamily:'var(--mono)',fontSize:11,color:'rgba(21,57,53,0.35)',letterSpacing:2.5,marginBottom:10,fontWeight:500}}>{proj.num}</div>
+      <div style={{fontFamily:'var(--mono)',fontSize:11,color:'var(--teal-b)',letterSpacing:2.5,marginBottom:10,fontWeight:500}}>{proj.num}</div>
       <h3 style={{fontFamily:'var(--serif)',fontSize:24,fontWeight:900,color:'var(--p-ink)',marginBottom:4,lineHeight:1.15}}>{proj.title}</h3>
       <div style={{fontFamily:'var(--body)',fontSize:16,fontWeight:600,color:'var(--p-muted)',marginBottom:16}}>{proj.subtitle}</div>
       <p style={{fontFamily:'var(--body)',fontSize:17,fontWeight:500,color:'var(--p-mid)',lineHeight:1.65,marginBottom:22}}>{proj.desc}</p>
@@ -621,10 +621,10 @@ function ProjectModal({ proj, onClose }) {
     <div className="modal-bg" onClick={onClose}>
       <div className="modal-box" onClick={e=>e.stopPropagation()}>
         <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:18}}>
-          <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--dark)',letterSpacing:2}}>{proj.cat.toUpperCase()}</span>
-          <button onClick={onClose} style={{background:'none',border:'none',fontSize:26,cursor:'pointer',color:'var(--p-muted)',lineHeight:1,padding:0,fontWeight:300}}>×</button>
+          <span style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--teal-b)',letterSpacing:2}}>{proj.cat.toUpperCase()}</span>
+          <button onClick={onClose} style={{background:'none',border:'none',fontSize:26,cursor:'pointer',color:'var(--p-ink)',lineHeight:1,padding:0,fontWeight:300}}>×</button>
         </div>
-        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'rgba(21,57,53,0.4)',letterSpacing:2.5,marginBottom:8}}>{proj.num}</div>
+        <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--teal-b)',letterSpacing:2.5,marginBottom:8}}>{proj.num}</div>
         <h2 style={{fontFamily:'var(--serif)',fontSize:28,fontWeight:900,color:'var(--p-ink)',marginBottom:4,lineHeight:1.15}}>{proj.title}</h2>
         <div style={{fontFamily:'var(--body)',fontSize:17,fontWeight:600,color:'var(--p-muted)',marginBottom:20}}>{proj.subtitle}</div>
         <p style={{fontFamily:'var(--body)',color:'var(--p-mid)',lineHeight:1.7,fontSize:17,fontWeight:500,marginBottom:24}}>{proj.longDesc}</p>
@@ -908,8 +908,8 @@ export default function Portfolio() {
           <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginTop:18}}>
             {[{n:'8',l:'Systems shipped'},{n:ghRepos!=null?String(ghRepos):'…',l:'Public repos'},{n:'0.847',l:'Best AUC, credit risk'},{n:'17%',l:'MAE improvement, M5'}].map(({n,l})=>(
               <div key={l} className="stat-pill">
-                <div style={{fontFamily:'var(--serif)',fontSize:32,color:'var(--dark)',fontWeight:900,lineHeight:1}}>{n}</div>
-                <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)',marginTop:10,letterSpacing:0.8}}>{l}</div>
+                <div style={{fontFamily:'var(--serif)',fontSize:32,color:'var(--gold)',fontWeight:900,lineHeight:1}}>{n}</div>
+                <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-ink)',marginTop:10,letterSpacing:0.8}}>{l}</div>
               </div>
             ))}
           </div>
@@ -989,13 +989,13 @@ export default function Portfolio() {
               <div>
                 <div style={{fontFamily:'var(--serif)',fontSize:19,color:'var(--p-ink)',fontWeight:900,marginBottom:4}}>Consistently building</div>
                 <div style={{fontFamily:'var(--mono)',fontSize:13,fontWeight:500,color:'var(--p-muted)'}}>
-                  Live · <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer" style={{color:'var(--dark)',fontWeight:600}}>github.com/garimadiyawar ↗</a>
+                  Live · <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer" style={{color:'var(--gold)',fontWeight:600}}>github.com/garimadiyawar ↗</a>
                 </div>
               </div>
               {[[ghRepos!=null?String(ghRepos):'…','Public repos'],['8','Projects'],['∞','Experiments']].map(([n,l])=>(
                 <div key={l} style={{textAlign:'center'}}>
-                  <div style={{fontFamily:'var(--serif)',fontSize:26,color:'var(--dark)',fontWeight:900}}>{n}</div>
-                  <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-muted)'}}>{l}</div>
+                  <div style={{fontFamily:'var(--serif)',fontSize:26,color:'var(--gold)',fontWeight:900}}>{n}</div>
+                  <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-ink)'}}>{l}</div>
                 </div>
               ))}
             </div>
