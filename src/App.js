@@ -278,6 +278,7 @@ const CSS = `
     #about > div > div:nth-child(2) { grid-template-columns:1fr !important; }
     #skills .reveal { grid-template-columns:repeat(2,1fr) !important; }
     #projects .reveal { grid-template-columns:1fr !important; }
+    #demo .island-a > div > .reveal:last-of-type { grid-template-columns:repeat(2,1fr) !important; }
     #github > div > div:last-child { grid-template-columns:1fr !important; }
 
     footer {
@@ -294,6 +295,7 @@ const CSS = `
     #skills { padding:20px 16px !important; }
     #projects { padding:20px 16px !important; }
     #demo { padding:20px 16px !important; }
+    #demo .island-a > div > .reveal:last-of-type { grid-template-columns:1fr !important; }
     #github { padding:20px 16px !important; }
 
     nav {
@@ -521,7 +523,7 @@ const PROJECTS = [
     desc:'Hum something. Get an orchestra back. Pitch detection, melody extraction, chord generation, multi-instrument arrangement, WAV output. Takes about as long as your coffee.',
     longDesc:'Full-stack audio ML pipeline: record a hummed melody on your phone, receive a fully arranged WAV. Backend: pitch detection (Librosa), chord generation (PyTorch), arrangement (PrettyMIDI), WAV render (Pydub). React Native Expo frontend.',
     tech:['PyTorch','Librosa','PrettyMIDI','FastAPI','React Native','Expo','Pydub'],
-    github:'https://github.com/garimadiyawar/hum-to-music-ai' },
+    github:'https://github.com/garimadiyawar/hum-to-music-ai' } ,
   { id:8,num:'08',title:'Gen Z Economy',subtitle:'Multi-Dimensional Economic Analysis',badge:'DEPLOYED',cat:'Data Research × Economics',live_badge:true,
     desc:"Turns out 'just work harder' doesn't track with the data. Cost of living, employment gaps, education debt, housing affordability, generational mobility: all sourced, all interactive.",
     longDesc:"A multi-dimensional analysis of Gen Z's economic position combining cost of living indices, youth employment data, education debt loads, housing affordability ratios, and generational wealth mobility metrics. Deployed as an interactive dashboard.",
