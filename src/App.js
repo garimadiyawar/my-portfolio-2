@@ -795,6 +795,7 @@ export default function Portfolio() {
   const [activeProj,setActiveProj] = useState(null);
   const [activeSec,setActiveSec] = useState('home');
   const [ghRepos,setGhRepos] = useState(null);
+  const [copied,setCopied] = useState(false);
 
   useEffect(()=>{
     fetch('https://api.github.com/users/garimadiyawar').then(r=>r.ok?r.json():Promise.reject()).then(d=>setGhRepos(d.public_repos)).catch(()=>{});
@@ -873,6 +874,7 @@ export default function Portfolio() {
               <button className="btn-primary-d" onClick={()=>go('projects')}>Read the Work</button>
               <a href="/Garima_Diyawar_Resume.pdf" download="Garima_Diyawar_Resume.pdf"><button className="btn-ghost-d">Resume ↗</button></a>
               <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer"><button className="btn-ghost-d">GitHub ↗</button></a>
+              <button className="btn-ghost-d" onClick={()=>{navigator.clipboard.writeText('https://my-portfolio-garima-diyawars-projects.vercel.app/');setCopied(true);setTimeout(()=>setCopied(false),2000);}}>Share ↗</button>
             </div>
 
             <div style={{marginTop:48,paddingTop:24,borderTop:'1px solid rgba(255,255,255,0.1)',display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,animation:'fadeUp 0.5s ease 0.55s both'}}>
@@ -1081,6 +1083,10 @@ export default function Portfolio() {
       </footer>
 
       {activeProj&&<ProjectModal proj={activeProj} onClose={()=>setActiveProj(null)}/>}
+
+      {copied&&<div style={{position:'fixed',top:24,left:'50%',transform:'translateX(-50%)',background:'rgba(0,212,197,0.95)',color:'white',padding:'12px 24px',borderRadius:'8px',fontFamily:'var(--mono)',fontSize:13,fontWeight:500,backdropFilter:'blur(10px)',boxShadow:'0 8px 32px rgba(0,212,197,0.25)',animation:'fadeUp 0.3s ease',zIndex:1000,pointerEvents:'none'}}>
+        Link Copied
+      </div>}
     </div>
   );
 }
