@@ -71,97 +71,11 @@ const CSS = `
         background:radial-gradient(circle, rgba(200,160,100,0.25) 0%, rgba(160,130,80,0.12) 40%, transparent 70%);
         top:55%; left:45%; animation:orbDrift4 38s ease-in-out infinite; }
 
-  /* ── Thunder flashes ── */
-  @keyframes thunderFlash {
-    0%, 85%, 88%, 91%, 100% { opacity:0; }
-    86%, 87.5%, 89%, 90% { opacity:1; }
-  }
-  @keyframes thunderFlash2 {
-    0%, 87%, 90%, 93%, 100% { opacity:0; }
-    88%, 89.5%, 91%, 92% { opacity:0.8; }
-  }
-  .thunder-flash {
-    position:fixed; inset:0; z-index:40; pointer-events:none;
-    background: radial-gradient(ellipse at 30% 10%, rgba(220,210,255,0.35) 0%, rgba(200,180,255,0.15) 40%, transparent 70%),
-                radial-gradient(ellipse at 70% 5%, rgba(200,190,255,0.25) 0%, transparent 60%);
-    animation: thunderFlash 11s ease-in-out infinite;
-  }
-  .thunder-flash-2 {
-    position:fixed; inset:0; z-index:40; pointer-events:none;
-    background: radial-gradient(ellipse at 75% 15%, rgba(210,200,255,0.40) 0%, rgba(180,160,220,0.15) 50%, transparent 70%),
-                radial-gradient(ellipse at 20% 70%, rgba(200,190,240,0.20) 0%, transparent 60%);
-    animation: thunderFlash2 15s ease-in-out 6s infinite;
-  }
-
-  /* ── Atmospheric fog ── */
-  .atmos-fog { position:fixed; inset:0; z-index:2; pointer-events:none;
-    background: linear-gradient(180deg,
-      rgba(120,100,150,0.08) 0%,
-      rgba(100,80,130,0.12) 30%,
-      rgba(80,70,110,0.08) 60%,
-      rgba(100,90,130,0.10) 100%);
-    animation: fogDrift 45s ease-in-out infinite;
-  }
-  @keyframes fogDrift {
-    0%, 100% { opacity:0.6; }
-    50% { opacity:0.9; }
-  }
-
-  /* ── Animated cloud fog layers ── */
-  @keyframes cloudDrift1 { 0% { transform:translateX(-100%); } 100% { transform:translateX(100vw); } }
-  @keyframes cloudDrift2 { 0% { transform:translateX(0); } 100% { transform:translateX(100vw); } }
-  @keyframes cloudDrift3 { 0% { transform:translateX(-50%); } 100% { transform:translateX(100vw); } }
-
-  .cloud-layer {
-    position:fixed; inset:0; z-index:3; pointer-events:none;
-    background-size:200% 100%;
-    filter:blur(40px);
-    opacity:0.15;
-    will-change:transform;
-  }
-
-  .cloud-1 {
-    background:linear-gradient(90deg, transparent 0%, rgba(150,150,150,0.8) 15%, rgba(140,140,140,0.8) 30%, transparent 50%, transparent 70%, rgba(150,150,150,0.7) 85%, transparent 100%);
-    animation:cloudDrift1 180s linear infinite;
-    top:0; height:35%;
-  }
-
-  .cloud-2 {
-    background:linear-gradient(90deg, transparent 0%, rgba(160,160,160,0.7) 10%, rgba(150,150,150,0.8) 25%, transparent 45%, transparent 60%, rgba(160,160,160,0.75) 80%, transparent 100%);
-    animation:cloudDrift2 220s linear infinite 30s;
-    top:30%; height:40%;
-  }
-
-  .cloud-3 {
-    background:linear-gradient(90deg, transparent 0%, rgba(140,140,140,0.75) 12%, rgba(150,150,150,0.8) 28%, transparent 48%, transparent 65%, rgba(140,140,140,0.7) 82%, transparent 100%);
-    animation:cloudDrift3 200s linear infinite 60s;
-    top:60%; height:38%;
-  }
-
-  .cloud-4 {
-    background:linear-gradient(90deg, transparent 0%, rgba(155,155,155,0.7) 18%, rgba(145,145,145,0.75) 35%, transparent 55%, transparent 70%, rgba(155,155,155,0.65) 88%, transparent 100%);
-    animation:cloudDrift1 240s linear infinite 90s;
-    top:20%; height:30%;
-  }
-
-  /* ── Rain particles ── */
-  @keyframes rainFall {
-    0%   { transform:translateY(-150px) translateX(0); opacity:0; }
-    5%   { opacity:1; }
-    95%  { opacity:0.5; }
-    100% { transform:translateY(110vh) translateX(30px); opacity:0; }
-  }
-  .rain-container { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
-  .rain-drop {
-    position:absolute; top:0; width:1px;
-    background: linear-gradient(to bottom, transparent 0%, rgba(140,170,255,0.5) 50%, rgba(120,150,255,0.2) 100%);
-    animation: rainFall linear infinite;
-  }
 
   /* ── Nav (floating glass bezel) ── */
   nav {
     position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:300;
-    background:rgba(8,12,22,0.85);
+    background:rgba(8,12,22,0.15);
     backdrop-filter:blur(24px);
     -webkit-backdrop-filter:blur(24px);
     border:1px solid rgba(201,168,76,0.18);
@@ -185,7 +99,7 @@ const CSS = `
 
   /* ── Dark island wrappers ── */
   .island-a {
-    background:rgba(10,14,28,0.78);
+    background:rgba(10,14,28,0.15);
     backdrop-filter:blur(28px);
     -webkit-backdrop-filter:blur(28px);
     border:1px solid rgba(201,168,76,0.18);
@@ -193,7 +107,7 @@ const CSS = `
     filter:drop-shadow(0 12px 48px rgba(0,0,0,0.65)) drop-shadow(0 0 30px rgba(90,40,160,0.30));
   }
   .island-b {
-    background:rgba(10,14,28,0.78);
+    background:rgba(10,14,28,0.15);
     backdrop-filter:blur(28px);
     -webkit-backdrop-filter:blur(28px);
     border:1px solid rgba(201,168,76,0.18);
@@ -201,7 +115,7 @@ const CSS = `
     filter:drop-shadow(0 8px 40px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(80,50,140,0.15));
   }
   .island-c {
-    background:rgba(10,14,28,0.78);
+    background:rgba(10,14,28,0.15);
     backdrop-filter:blur(28px);
     -webkit-backdrop-filter:blur(28px);
     border:1px solid rgba(201,168,76,0.18);
@@ -210,18 +124,23 @@ const CSS = `
   }
 
   /* ── Dark glass panel shapes ── */
-  .panel-a { background:rgba(12,18,36,0.62); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:20px 4px 20px 20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
+  .panel-a { background:rgba(12,18,36,0.15); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:20px 4px 20px 20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
   .panel-a:hover { border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15), inset 0 1px 0 rgba(255,255,255,0.08); }
-  .panel-b { background:rgba(12,18,36,0.62); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:4px 20px 20px 20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
+  .panel-b { background:rgba(12,18,36,0.15); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:4px 20px 20px 20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
   .panel-b:hover { border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15), inset 0 1px 0 rgba(255,255,255,0.08); }
-  .panel-c { background:rgba(12,18,36,0.62); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:20px 20px 4px 20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
+  .panel-c { background:rgba(12,18,36,0.15); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:20px 20px 4px 20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
   .panel-c:hover { border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15), inset 0 1px 0 rgba(255,255,255,0.08); }
-  .panel-d { background:rgba(12,18,36,0.62); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border:1px solid rgba(201,168,76,0.22); clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); box-shadow:0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06); }
-  .panel-e { background:rgba(12,18,36,0.62); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
+  .panel-d { background:rgba(12,18,36,0.15); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border:1px solid rgba(201,168,76,0.22); clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%); box-shadow:0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06); }
+  .panel-e { background:rgba(12,18,36,0.15); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-radius:20px; border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06); transition:border-color 0.18s, box-shadow 0.18s; }
   .panel-e:hover { border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15), inset 0 1px 0 rgba(255,255,255,0.08); }
 
   /* ── Panel on page bg ── */
   .panel-light { background:rgba(12,18,36,0.62); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border:1px solid rgba(201,168,76,0.22); box-shadow:0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06); }
+
+  /* ── Ensure responsive containers ── */
+  #home > div, #about > div, #skills > div, #projects > div, #demo > div, #github > div {
+    max-width:100%; width:100%; box-sizing:border-box;
+  }
 
   /* ── Section header ── */
   .dispatch-tag { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
@@ -248,7 +167,7 @@ const CSS = `
 
   /* ── Skill tile ── */
   .skill-tile {
-    background:rgba(12,18,36,0.62);
+    background:rgba(12,18,36,0.15);
     backdrop-filter:blur(24px);
     -webkit-backdrop-filter:blur(24px);
     border:1px solid rgba(201,168,76,0.22);
@@ -256,7 +175,7 @@ const CSS = `
     padding:22px; cursor:pointer;
     transition:background 0.22s, box-shadow 0.22s, min-height 0.28s, border-color 0.22s;
   }
-  .skill-tile:hover { background:rgba(12,18,36,0.72); border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15), inset 0 1px 0 rgba(255,255,255,0.08); }
+  .skill-tile:hover { background:rgba(12,18,36,0.25); border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15), inset 0 1px 0 rgba(255,255,255,0.08); }
 
   /* ── Project card ── */
   .proj-card {
@@ -284,7 +203,7 @@ const CSS = `
   .btn-primary:hover { background:linear-gradient(135deg, var(--gold-b), var(--gold)); box-shadow:0 0 30px rgba(212,168,32,0.55), 0 0 60px rgba(212,168,32,0.22); filter:brightness(1.1); }
 
   .btn-ghost {
-    background:rgba(201,168,76,0.08); color:var(--d-ink); border:1px solid rgba(201,168,76,0.28);
+    background:rgba(201,168,76,0.15); color:var(--d-ink); border:1px solid rgba(201,168,76,0.28);
     padding:14px 30px; cursor:pointer;
     font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     border-radius:4px 16px 4px 16px;
@@ -293,7 +212,7 @@ const CSS = `
     box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);
     transition:background 0.18s, border-color 0.18s;
   }
-  .btn-ghost:hover { background:rgba(201,168,76,0.16); border-color:rgba(201,168,76,0.5); box-shadow:0 0 20px rgba(212,168,32,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
+  .btn-ghost:hover { background:rgba(201,168,76,0.25); border-color:rgba(201,168,76,0.5); box-shadow:0 0 20px rgba(212,168,32,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
 
   .btn-primary-d {
     background:linear-gradient(135deg, var(--gold), #A8882C); color:#080C16; border:none;
@@ -304,14 +223,14 @@ const CSS = `
   }
   .btn-primary-d:hover { background:linear-gradient(135deg, var(--gold-b), var(--gold)); box-shadow:0 0 30px rgba(212,168,32,0.55), 0 0 60px rgba(212,168,32,0.22); filter:brightness(1.1); }
   .btn-ghost-d {
-    background:rgba(201,168,76,0.08); color:var(--d-ink); border:1px solid rgba(201,168,76,0.28);
+    background:rgba(201,168,76,0.15); color:var(--d-ink); border:1px solid rgba(201,168,76,0.28);
     padding:14px 30px; cursor:pointer;
     font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
     border-radius:4px 16px 4px 16px;
     backdrop-filter:blur(8px);
     transition:background 0.18s, border-color 0.18s;
   }
-  .btn-ghost-d:hover { background:rgba(201,168,76,0.16); border-color:rgba(201,168,76,0.5); box-shadow:0 0 20px rgba(212,168,32,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
+  .btn-ghost-d:hover { background:rgba(201,168,76,0.25); border-color:rgba(201,168,76,0.5); box-shadow:0 0 20px rgba(212,168,32,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
 
   /* ── Matrix cell ── */
   .matrix-cell {
@@ -329,7 +248,7 @@ const CSS = `
   /* ── Contact link ── */
   .contact-link {
     display:flex; justify-content:space-between; align-items:center;
-    background:rgba(12,18,36,0.62);
+    background:rgba(12,18,36,0.15);
     backdrop-filter:blur(24px);
     -webkit-backdrop-filter:blur(24px);
     border:1px solid rgba(201,168,76,0.22);
@@ -338,11 +257,11 @@ const CSS = `
     clip-path:polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
     transition:background 0.18s, box-shadow 0.18s, border-color 0.18s;
   }
-  .contact-link:hover { background:rgba(12,18,36,0.78); border-color:rgba(212,168,32,0.55); box-shadow:4px 4px 0 rgba(212,168,32,0.5), 0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
+  .contact-link:hover { background:rgba(12,18,36,0.25); border-color:rgba(212,168,32,0.55); box-shadow:4px 4px 0 rgba(212,168,32,0.5), 0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), inset 0 1px 0 rgba(255,255,255,0.08); }
 
   /* ── Stat pill ── */
   .stat-pill {
-    background:rgba(12,18,36,0.62);
+    background:rgba(12,18,36,0.15);
     backdrop-filter:blur(24px);
     -webkit-backdrop-filter:blur(24px);
     border:1px solid rgba(201,168,76,0.22);
@@ -351,7 +270,7 @@ const CSS = `
     box-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,32,0.10), inset 0 1px 0 rgba(255,255,255,0.06);
     transition:background 0.18s, box-shadow 0.18s, border-color 0.18s;
   }
-  .stat-pill:hover { background:rgba(12,18,36,0.78); border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15); }
+  .stat-pill:hover { background:rgba(12,18,36,0.25); border-color:rgba(212,168,32,0.55); box-shadow:0 8px 48px rgba(0,0,0,0.6), 0 0 40px rgba(212,168,32,0.35), 0 0 80px rgba(212,168,32,0.15); }
 
   /* ── Modal ── */
   .modal-bg {
@@ -388,18 +307,26 @@ const CSS = `
     .nav-links { gap:14px; }
     .nav-btn { font-size:9px; letter-spacing:0.8px; padding-bottom:1px; }
 
-    body { font-size:16px; }
+    body { font-size:16px; overflow-x:hidden; }
 
     h2.sec-title-dark, h2.sec-title-light { font-size:clamp(28px,4vw,40px); }
 
     .skill-tile { padding:16px; }
 
     #home > div:first-child { grid-template-columns:1fr !important; }
-    #about > div > div:nth-child(2) { grid-template-columns:1fr !important; }
-    #skills .reveal { grid-template-columns:repeat(2,1fr) !important; }
+    #about > div > div:nth-child(2) { grid-template-columns:1fr !important; gap:12px !important; }
+    #about { padding:40px 20px !important; }
+    #skills { padding:40px 20px !important; }
+    #skills .reveal { grid-template-columns:repeat(2,1fr) !important; gap:10px !important; }
+    #projects { padding:40px 20px !important; }
     #projects .reveal { grid-template-columns:1fr !important; }
+    #demo { padding:40px 20px !important; }
     #demo .island-a > div > .reveal:last-of-type { grid-template-columns:repeat(2,1fr) !important; }
-    #github > div > div:last-child { grid-template-columns:1fr !important; }
+    #github { padding:40px 20px !important; }
+    #github > div > div:last-child { display:flex; gap:12px; flex-wrap:wrap; justify-content:space-around; }
+
+    .stat-pill { padding:14px 12px; min-width:100px; }
+    .contact-link { padding:12px 16px !important; }
 
     footer {
       padding:18px 24px; flex-direction:column; gap:12px; text-align:center;
@@ -408,11 +335,11 @@ const CSS = `
   }
 
   @media (max-width: 640px) {
-    body { font-size:15px; }
-    html, body { overflow-x:hidden; width:100%; }
+    body { font-size:15px; overflow-x:hidden; }
+    html, body { overflow-x:hidden; width:100%; max-width:100%; }
 
-    #home { padding:70px 20px 20px !important; }
-    #about { padding:20px 16px !important; }
+    #home { padding:0 0 40px 0 !important; min-height:100vh !important; }
+    #about { padding:40px 16px 20px !important; }
     #skills { padding:20px 16px !important; }
     #projects { padding:20px 16px !important; }
     #demo { padding:20px 16px !important; }
@@ -430,24 +357,23 @@ const CSS = `
     h2 { font-size:clamp(24px,3.5vw,32px) !important; }
     h3 { font-size:18px !important; }
 
-    .island-a, .island-b, .island-c { padding:40px 24px !important; }
-    .panel-a, .panel-b, .panel-c, .panel-d, .panel-e { padding:24px 20px !important; }
+    .island-a, .island-b, .island-c { padding:32px 18px !important; max-width:100%; }
+    .panel-a, .panel-b, .panel-c, .panel-d, .panel-e { padding:20px 16px !important; max-width:100%; }
 
     #home > div:first-child { grid-template-columns:1fr !important; gap:12px !important; }
     #about > div > div:nth-child(2) { grid-template-columns:1fr !important; gap:12px !important; }
     #skills .reveal { grid-template-columns:repeat(2,1fr) !important; gap:10px !important; }
     #projects .reveal { grid-template-columns:1fr !important; gap:10px !important; }
 
-    .skill-tile { padding:14px; min-height:90px !important; }
-    .skill-tile:hover { min-height:auto !important; }
+    .skill-tile { padding:14px; }
 
-    .proj-card { padding:20px !important; }
+    .proj-card { padding:20px !important; max-width:100%; }
 
     .btn-primary, .btn-ghost, .btn-primary-d, .btn-ghost-d {
       padding:12px 24px; font-size:11px;
     }
 
-    .stat-pill { padding:16px 14px; }
+    .stat-pill { padding:16px 14px; min-width:0; }
 
     .contact-link { clip-path:none; padding:14px 16px !important; }
 
@@ -463,10 +389,15 @@ const CSS = `
   }
 
   @media (max-width: 480px) {
-    body { font-size:14px; }
+    body { font-size:14px; overflow-x:hidden; }
     html, body { width:100%; max-width:100%; overflow-x:hidden; }
 
-    #home { padding:60px 16px 16px !important; }
+    #home { padding:0 0 40px 0 !important; min-height:100vh !important; }
+    #about { padding:40px 14px 16px !important; }
+    #skills { padding:16px 14px !important; }
+    #projects { padding:16px 14px !important; }
+    #demo { padding:16px 14px !important; }
+    #github { padding:16px 14px !important; }
 
     h1 { font-size:clamp(36px,7vw,56px) !important; }
     h2 { font-size:clamp(20px,3vw,28px) !important; }
@@ -474,11 +405,12 @@ const CSS = `
     nav { padding:0 12px; height:44px; gap:10px; }
     .nav-btn { font-size:7px; letter-spacing:0.5px; }
 
-    .island-a, .island-b, .island-c { padding:32px 18px !important; }
-    .panel-a, .panel-b, .panel-c, .panel-d, .panel-e { padding:18px 16px !important; }
+    .island-a, .island-b, .island-c { padding:28px 16px !important; margin:0 -14px !important; }
+    .panel-a, .panel-b, .panel-c, .panel-d, .panel-e { padding:16px 14px !important; }
 
     #home > div:first-child { grid-template-columns:1fr !important; gap:10px !important; }
     #skills .reveal { grid-template-columns:1fr !important; gap:8px !important; }
+    #about > div { flex-direction:column !important; }
 
     .skill-tile { padding:12px; font-size:12px !important; }
 
@@ -486,12 +418,16 @@ const CSS = `
     .proj-card h3 { font-size:18px !important; }
 
     .btn-primary, .btn-ghost, .btn-primary-d, .btn-ghost-d {
-      padding:10px 18px; font-size:10px;
+      padding:10px 18px; font-size:10px; width:100%;
     }
 
-    .stat-pill { padding:14px 12px; }
+    .stat-pill { padding:14px 12px; min-width:0; flex:1; }
 
-    footer { padding:14px 16px; font-size:11px; }
+    .contact-link { padding:12px 14px !important; }
+
+    footer { padding:14px 14px; font-size:11px; }
+
+    #github > div { max-width:100% !important; }
   }
 `;
 
@@ -509,14 +445,14 @@ function GlitchName() {
 /* ── Skills ── */
 const SKILL_SHAPES = ['16px 4px 16px 4px','4px 16px 4px 16px','16px 4px 4px 16px','4px 16px 16px 4px','16px','4px','16px 4px 16px 4px','4px 16px 4px 16px'];
 const SKILLS = [
-  { name:'Machine Learning', icon:'⚙', tools:['XGBoost','LightGBM','Scikit-learn','Optuna'],     accent:'#153935', viz:'pipe'    },
+  { name:'Machine Learning', icon:'⚙', tools:['XGBoost','LightGBM','Scikit-learn','Optuna'],     accent:'#20EDE0', viz:'pipe'    },
   { name:'Deep Learning',    icon:'◎', tools:['PyTorch','HuggingFace','RoBERTa','Transformers'], accent:'#2ABFB0', viz:'neural'  },
-  { name:'Agentic AI',       icon:'◈', tools:['LangGraph','LangChain','Ollama','LangSmith'],      accent:'#153935', viz:'agent'   },
+  { name:'Agentic AI',       icon:'◈', tools:['LangGraph','LangChain','Ollama','LangSmith'],      accent:'#20EDE0', viz:'agent'   },
   { name:'Data Analysis',    icon:'▣', tools:['Pandas','NumPy','SQL','Polars'],                   accent:'#20EDE0', viz:'bar'     },
   { name:'NLP',              icon:'◇', tools:['spaCy','Transformers','NLTK','Text Analytics'],    accent:'#2ABFB0', viz:'tok'     },
-  { name:'XAI & Eval',       icon:'◬', tools:['SHAP','LIME','MLflow','Evidently'],                accent:'#153935', viz:'metrics' },
-  { name:'Cloud & Deploy',   icon:'◐', tools:['Azure AI','Streamlit','FastAPI','GitHub Actions'], accent:'#2A5550', viz:'code'    },
-  { name:'Data Viz',         icon:'▤', tools:['Plotly','Seaborn','Matplotlib','React'],           accent:'#153935', viz:'bars2'   },
+  { name:'XAI & Eval',       icon:'◬', tools:['SHAP','LIME','MLflow','Evidently'],                accent:'#20EDE0', viz:'metrics' },
+  { name:'Cloud & Deploy',   icon:'◐', tools:['Azure AI','Streamlit','FastAPI','GitHub Actions'], accent:'#2ABFB0', viz:'code'    },
+  { name:'Data Viz',         icon:'▤', tools:['Plotly','Seaborn','Matplotlib','React'],           accent:'#20EDE0', viz:'bars2'   },
 ];
 
 function SkillViz({ type, accent }) {
@@ -585,15 +521,15 @@ function SkillTile({ sk, idx }) {
   const [hov,setHov] = useState(false);
   return (
     <div className="skill-tile" onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{ borderRadius:SKILL_SHAPES[idx%8], minHeight:hov?178:96 }}>
+      style={{ borderRadius:SKILL_SHAPES[idx%8], opacity:hov?1:0.85, transform:hov?'translateY(-2px)':'translateY(0)', transition:'opacity 0.3s ease, transform 0.3s ease' }}>
       <div style={{fontSize:18,marginBottom:8,opacity:0.5}}>{sk.icon}</div>
       <div style={{fontFamily:'var(--mono)',fontSize:13,fontWeight:600,color:sk.accent,textTransform:'uppercase',letterSpacing:0.5}}>{sk.name}</div>
-      {hov&&<div style={{animation:'fadeUp 0.16s ease'}}>
+      <div style={{maxHeight:hov?200:0,overflow:'hidden',transition:'max-height 0.35s ease',marginTop:hov?12:0}}>
         <SkillViz type={sk.viz} accent={sk.accent}/>
         <div style={{display:'flex',flexWrap:'wrap',gap:4}}>
           {sk.tools.map(t=><span key={t} style={{fontSize:10,fontWeight:500,border:'1px solid rgba(0,0,0,0.15)',color:'var(--p-muted)',padding:'2px 6px',borderRadius:3,fontFamily:'var(--mono)'}}>{t}</span>)}
         </div>
-      </div>}
+      </div>
     </div>
   );
 }
@@ -783,13 +719,6 @@ const CERTS = [
   { name:'Google Data Analytics',             url:'https://coursera.org/verify/professional-cert/CIJGIBJ3F6Q0' },
 ];
 
-const RAIN_DROPS = Array.from({length:35}, (_,i) => ({
-  left:`${(i*2.86+(i%9)*1.1)%100}%`,
-  height:`${70+(i*17%60)}px`,
-  duration:`${0.55+(i*0.031%0.65)}s`,
-  delay:`${(i*0.097%4)}s`,
-  opacity: 0.12+(i*0.009%0.22)
-}));
 
 export default function Portfolio() {
   const [activeProj,setActiveProj] = useState(null);
@@ -820,35 +749,18 @@ export default function Portfolio() {
       <div className="storm-bg" aria-hidden="true">
         <div className="storm-orb s1"/><div className="storm-orb s2"/><div className="storm-orb s3"/><div className="storm-orb s4"/>
       </div>
-      <div className="thunder-flash" aria-hidden="true"/><div className="thunder-flash-2" aria-hidden="true"/>
-      <div className="atmos-fog" aria-hidden="true"/>
-      <div className="cloud-layer cloud-1" aria-hidden="true"/>
-      <div className="cloud-layer cloud-2" aria-hidden="true"/>
-      <div className="cloud-layer cloud-3" aria-hidden="true"/>
-      <div className="cloud-layer cloud-4" aria-hidden="true"/>
-      <div className="atmos-fog" aria-hidden="true"/>
-      <div className="rain-container" style={{zIndex:50}}>
-        {RAIN_DROPS.map((d,i) => (
-          <div key={i} className="rain-drop" style={{
-            left:d.left, height:d.height,
-            animationDuration:d.duration,
-            animationDelay:d.delay,
-            opacity:d.opacity
-          }}/>
-        ))}
-      </div>
       <nav>
         {/*<div className="nav-logo">Garima Diyawar</div>*/}
         <div className="nav-links">{NAV.map(([id,lb])=><button key={id} className={`nav-btn${activeSec===id?' active':''}`} onClick={()=>go(id)}>{lb}</button>)}</div>
       </nav>
 
       {/* ══ HERO ══ */}
-      <div id="home" style={{padding:0}}>
-        <div style={{display:'grid',gridTemplateColumns:'1.45fr 1fr',gap:18,alignItems:'stretch'}}>
+      <div id="home" style={{padding:'0 0 40px 0',minHeight:'100vh',backgroundImage:"url('/1.png')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1.45fr 1fr',gap:18,alignItems:'flex-start',width:'100%',paddingTop:'60px'}}>
 
           {/* LEFT */}
-          <div className="island-a" style={{padding:'60px 56px',display:'flex',flexDirection:'column',justifyContent:'center',minHeight:'82vh'}}>
-            <div style={{display:'flex',alignItems:'center',gap:0,marginBottom:36,animation:'fadeUp 0.4s ease 0.05s both'}}>
+          <div className="island-a" style={{padding:'30px 8px',display:'flex',flexDirection:'column',justifyContent:'center',gap:6}}>
+            <div style={{display:'flex',alignItems:'center',gap:0,marginBottom:0,animation:'fadeUp 0.4s ease 0.05s both'}}>
               <div style={{flex:1,height:'1px',background:'rgba(255,255,255,0.12)'}}/>
               <div style={{padding:'7px 20px',background:'rgba(255,255,255,0.07)',border:'1px solid rgba(255,255,255,0.12)',backdropFilter:'blur(8px)'}}>
                 <span style={{fontFamily:'var(--mono)',fontSize:10,fontWeight:500,color:'var(--d-muted)',letterSpacing:4,textTransform:'uppercase',whiteSpace:'nowrap'}}>The Intelligence Dispatch</span>
@@ -860,13 +772,13 @@ export default function Portfolio() {
               <GlitchName/>
             </h1>
 
-            <div style={{width:64,height:3,background:'var(--teal)',margin:'24px auto',animation:'fadeUp 0.4s ease 0.28s both'}}/>
+            <div style={{width:64,height:3,background:'var(--teal)',margin:'0 auto',animation:'fadeUp 0.4s ease 0.28s both'}}/>
 
-            <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:4,marginBottom:24,textAlign:'center',animation:'fadeUp 0.4s ease 0.32s both'}}>
+            <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--d-muted)',letterSpacing:4,marginBottom:0,textAlign:'center',animation:'fadeUp 0.4s ease 0.32s both'}}>
               B.TECH CSE  ·  AI/ML ENGINEER  ·  2026
             </div>
 
-            <p style={{fontFamily:'var(--body)',fontSize:'clamp(17px,1.7vw,21px)',fontWeight:500,color:'var(--d-mid)',lineHeight:1.65,maxWidth:540,margin:'0 auto 40px',textAlign:'center',animation:'fadeUp 0.55s ease 0.38s both'}}>
+            <p style={{fontFamily:'var(--body)',fontSize:'clamp(17px,1.7vw,21px)',fontWeight:500,color:'var(--d-mid)',lineHeight:1.65,maxWidth:540,margin:'0 auto',textAlign:'center',animation:'fadeUp 0.55s ease 0.38s both'}}>
               ML engineer who builds models that work, explain themselves, and come with a receipt.
             </p>
 
@@ -877,22 +789,10 @@ export default function Portfolio() {
               <button className="btn-ghost-d" onClick={()=>{navigator.clipboard.writeText('https://my-portfolio-garima-diyawars-projects.vercel.app/');setCopied(true);setTimeout(()=>setCopied(false),2000);}}>Share ↗</button>
             </div>
 
-            <div style={{marginTop:48,paddingTop:24,borderTop:'1px solid rgba(255,255,255,0.1)',display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,animation:'fadeUp 0.5s ease 0.55s both'}}>
-              {[
-                {n:'8',l:'Systems shipped'},
-                {n:ghRepos!=null?String(ghRepos):'…',l:'Public repos'},
-                {n:'0.847',l:'Best AUC'},
-              ].map(({n,l})=>(
-                <div key={l} style={{textAlign:'center'}}>
-                  <div style={{fontFamily:'var(--serif)',fontSize:28,color:'var(--teal)',fontWeight:900,lineHeight:1}}>{n}</div>
-                  <div style={{fontFamily:'var(--mono)',fontSize:10,fontWeight:500,color:'var(--d-muted)',marginTop:6,letterSpacing:0.8,textTransform:'uppercase'}}>{l}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* RIGHT */}
-          <div className="island-b" style={{padding:'56px 44px',display:'flex',flexDirection:'column',justifyContent:'center'}}>
+          <div className="island-b" style={{padding:'30px 8px',display:'flex',flexDirection:'column',justifyContent:'center'}}>
             <div className="reveal revealed" style={{textAlign:'center',animation:'fadeUp 0.5s ease 0.2s both'}}>
               <div className="dispatch-tag dt-dark" style={{justifyContent:'center'}}><span>Correspondence</span></div>
               <h2 className="sec-title-dark" style={{textAlign:'center',fontSize:'clamp(28px,3.2vw,38px)'}}>Send a dispatch.<br/><em>Let's talk.</em></h2>
@@ -926,9 +826,9 @@ export default function Portfolio() {
       </div>
 
       {/* ══ ABOUT ══ */}
-      <div id="about" style={{padding:0}}>
+      <div id="about" style={{padding:'20px 0 0 0',backgroundImage:"url('/2.jpeg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center'}}>
         <div style={{maxWidth:980,margin:'0 auto'}}>
-          <div className="reveal" style={{marginBottom:20}}>
+          <div className="reveal" style={{marginBottom:20,padding:'32px 36px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'16px'}}>
             <div className="dispatch-tag dt-light"><span>About Me</span></div>
             <h2 className="sec-title-light">The mind behind<br/><em>the models</em></h2>
           </div>
@@ -989,25 +889,22 @@ export default function Portfolio() {
       </div>
 
       {/* ══ SKILLS ══ */}
-      <div id="skills" style={{padding:0}}>
-        <div className="island-b" style={{padding:'60px 48px'}}>
-          <div style={{maxWidth:1060,margin:'0 auto'}}>
-            <div className="reveal" style={{textAlign:'center',marginBottom:44}}>
-              <div className="dispatch-tag dt-dark" style={{justifyContent:'center'}}><span>Technical Arsenal</span></div>
-              <h2 className="sec-title-dark" style={{textAlign:'center'}}>The Toolkit</h2>
-              <p style={{fontFamily:'var(--body)',color:'var(--d-muted)',fontSize:17,fontWeight:500,marginTop:8}}>Hover any tile to explore the domain</p>
-            </div>
-            <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
-              {SKILLS.map((sk,i)=><SkillTile key={sk.name} sk={sk} idx={i}/>)}
-            </div>
+      <div id="skills" style={{padding:'60px 48px',minHeight:'100vh',backgroundImage:"url('/3.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <div style={{maxWidth:1100,width:'100%'}}>
+          <div className="reveal" style={{marginBottom:40,padding:'32px 36px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'16px'}}>
+            <div className="dispatch-tag dt-light"><span style={{color:'#000000'}}><b>Technical Arsenal</b></span></div>
+            <h2 className="sec-title-light" style={{color:'#000000'}}>The Toolkit</h2>
+          </div>
+          <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16}}>
+            {SKILLS.map((sk,i)=><SkillTile key={sk.name} sk={sk} idx={i}/>)}
           </div>
         </div>
       </div>
 
       {/* ══ PROJECTS ══ */}
-      <div id="projects" style={{padding:0}}>
+      <div id="projects" style={{padding:0,backgroundImage:"url('/4.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center'}}>
         <div style={{maxWidth:1060,margin:'0 auto'}}>
-          <div className="reveal" style={{marginBottom:36}}>
+          <div className="reveal" style={{marginBottom:36,padding:'32px 36px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'16px'}}>
             <div className="dispatch-tag dt-light"><span>From the Research Desk</span></div>
             <h2 className="sec-title-light">Projects &<br/><em>Research</em></h2>
             <p style={{fontFamily:'var(--body)',color:'var(--p-muted)',fontSize:17,fontWeight:500,marginTop:8}}>Click any card to read more</p>
@@ -1019,8 +916,8 @@ export default function Portfolio() {
       </div>
 
       {/* ══ ML LAB ══ */}
-      <div id="demo" style={{padding:0}}>
-        <div className="island-a" style={{padding:'60px 48px'}}>
+      <div id="demo" style={{padding:0,minHeight:'100vh',backgroundImage:"url('/5.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <div className="island-a" style={{padding:'60px 48px',maxWidth:'fit-content'}}>
           <div style={{maxWidth:920,margin:'0 auto'}}>
             <div className="reveal" style={{marginBottom:36}}>
               <div className="dispatch-tag dt-dark"><span>Dissertation Results</span></div>
@@ -1049,7 +946,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ GITHUB ══ */}
-      <div id="github" style={{padding:0}}>
+      <div id="github" style={{padding:0,backgroundImage:"url('/6.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center'}}>
         <div style={{maxWidth:860,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:24}}>
             <div className="dispatch-tag dt-light"><span>GitHub Activity</span></div>
@@ -1057,15 +954,15 @@ export default function Portfolio() {
           </div>
           <div className="reveal panel-a" style={{padding:32}}>
             <GitHubActivity/>
-            <div style={{marginTop:24,borderTop:'1px solid rgba(21,57,53,0.12)',paddingTop:20,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:18}}>
-              <div>
+            <div style={{marginTop:24,borderTop:'1px solid rgba(21,57,53,0.12)',paddingTop:20,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:12}}>
+              <div style={{padding:'16px 20px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'12px'}}>
                 <div style={{fontFamily:'var(--serif)',fontSize:19,color:'var(--p-ink)',fontWeight:900,marginBottom:4}}>Consistently building</div>
                 <div style={{fontFamily:'var(--mono)',fontSize:13,fontWeight:500,color:'var(--p-muted)'}}>
                   Live · <a href="https://github.com/garimadiyawar" target="_blank" rel="noreferrer" style={{color:'var(--gold)',fontWeight:600}}>github.com/garimadiyawar ↗</a>
                 </div>
               </div>
               {[[ghRepos!=null?String(ghRepos):'…','Public repos'],['8','Projects'],['∞','Experiments']].map(([n,l])=>(
-                <div key={l} style={{textAlign:'center'}}>
+                <div key={l} style={{textAlign:'center',padding:'16px 20px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'12px',transition:'background 0.18s'}}>
                   <div style={{fontFamily:'var(--serif)',fontSize:26,color:'var(--gold)',fontWeight:900}}>{n}</div>
                   <div style={{fontFamily:'var(--mono)',fontSize:11,fontWeight:500,color:'var(--p-ink)'}}>{l}</div>
                 </div>
