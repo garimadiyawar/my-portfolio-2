@@ -1,6 +1,6 @@
 # Garima Diyawar — Portfolio
 
-**Live:** https://my-portfolio-garima-diyawars-projects.vercel.app
+**Live:** https://my-portfolio-2-khaki.vercel.app
 
 Personal portfolio built with React. Newspaper-themed, typographically driven. Features a Hindi/English name glitch, live GitHub activity graph, and real-data project write-ups.
 
