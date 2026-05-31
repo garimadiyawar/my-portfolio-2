@@ -755,7 +755,7 @@ export default function Portfolio() {
       </nav>
 
       {/* ══ HERO ══ */}
-      <div id="home" style={{padding:'0 0 40px 0',minHeight:'100vh',backgroundImage:"url('/1.png')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <div id="home" style={{padding:'0 0 40px 0',minHeight:'100vh',backgroundImage:"url('/6.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
         <div style={{display:'grid',gridTemplateColumns:'1.45fr 1fr',gap:18,alignItems:'flex-start',width:'100%',paddingTop:'60px'}}>
 
           {/* LEFT */}
@@ -826,7 +826,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ ABOUT ══ */}
-      <div id="about" style={{padding:'20px 0 0 0',backgroundImage:"url('/2.jpeg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center'}}>
+      <div id="about" style={{padding:'20px 0 0 0',backgroundImage:"url('/6.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center'}}>
         <div style={{maxWidth:980,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:20,padding:'32px 36px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'16px'}}>
             <div className="dispatch-tag dt-light"><span>About Me</span></div>
@@ -889,7 +889,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ SKILLS ══ */}
-      <div id="skills" style={{padding:'60px 48px',minHeight:'100vh',backgroundImage:"url('/3.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <div id="skills" style={{padding:'60px 48px',minHeight:'100vh',backgroundImage:"url('/6.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
         <div style={{maxWidth:1100,width:'100%'}}>
           <div className="reveal" style={{marginBottom:40,padding:'32px 36px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'16px'}}>
             <div className="dispatch-tag dt-light"><span style={{color:'#000000'}}><b>Technical Arsenal</b></span></div>
@@ -902,7 +902,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ PROJECTS ══ */}
-      <div id="projects" style={{padding:0,backgroundImage:"url('/4.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center'}}>
+      <div id="projects" style={{padding:0,backgroundImage:"url('/6.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center'}}>
         <div style={{maxWidth:1060,margin:'0 auto'}}>
           <div className="reveal" style={{marginBottom:36,padding:'32px 36px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'16px'}}>
             <div className="dispatch-tag dt-light"><span>From the Research Desk</span></div>
@@ -916,7 +916,7 @@ export default function Portfolio() {
       </div>
 
       {/* ══ ML LAB ══ */}
-      <div id="demo" style={{padding:0,minHeight:'100vh',backgroundImage:"url('/5.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <div id="demo" style={{padding:0,minHeight:'100vh',backgroundImage:"url('/6.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
         <div className="island-a" style={{padding:'60px 48px',maxWidth:'fit-content'}}>
           <div style={{maxWidth:920,margin:'0 auto'}}>
             <div className="reveal" style={{marginBottom:36}}>
