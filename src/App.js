@@ -892,8 +892,8 @@ export default function Portfolio() {
       <div id="skills" style={{padding:'60px 48px',minHeight:'100vh',backgroundImage:"url('/6.jpg')",backgroundSize:'auto 100%',backgroundRepeat:'repeat-x',backgroundPosition:'left center',display:'flex',justifyContent:'center',alignItems:'center'}}>
         <div style={{maxWidth:1100,width:'100%'}}>
           <div className="reveal" style={{marginBottom:40,padding:'32px 36px',background:'rgba(12,18,36,0.15)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(201,168,76,0.22)',borderRadius:'16px'}}>
-            <div className="dispatch-tag dt-light"><span style={{color:'#000000'}}><b>Technical Arsenal</b></span></div>
-            <h2 className="sec-title-light" style={{color:'#000000'}}>The Toolkit</h2>
+            <div className="dispatch-tag dt-light"><span><b>Technical Arsenal</b></span></div>
+            <h2 className="sec-title-light">The Toolkit</h2>
           </div>
           <div className="reveal" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16}}>
             {SKILLS.map((sk,i)=><SkillTile key={sk.name} sk={sk} idx={i}/>)}
