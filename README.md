@@ -4,6 +4,8 @@
 
 A polished, typographically-driven portfolio showcasing ML research and production systems. Built with React, featuring live GitHub activity, project case studies, and an interactive confusion matrix explorer from my credit risk thesis.
 
+![Portfolio Screenshot](./screenshot.png)
+
 ## Highlights
 
 - **8 shipped projects** — from multi-agent RAG systems to audio ML pipelines
